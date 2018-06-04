@@ -1,0 +1,159 @@
+@import "variables";
+@import "mixins";
+
+html {
+	font-size: $base;
+}
+
+body {
+	font-family: "Roboto";
+	font-size: 100%;
+	line-height: 1.6667;
+	transition-timing-function: $bezier;
+}
+
+a {
+	text-decoration: none;
+	transition: 300ms;
+	outline: none;
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+h1 {
+	@include rem(font-size, 64px);
+	line-height: 1.445;
+	font-weight: 400;
+}
+
+h2 {
+	@include rem(font-size, 48px);
+}
+
+h3 {
+	@include rem(font-size, 42px);
+}
+
+h4 {
+	@include rem(font-size, 36px);
+}
+
+h5 {
+	@include rem(font-size, 24px);
+	font-weight: 500;
+}
+
+h6 {
+	@include rem(font-size, 20px);
+	font-weight: 400;
+}
+
+.zoom {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.Page-Component {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+
+	&.section--gradient-gray {
+		background: $grayGradient;
+	}
+}
+
+.top-level-page {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+	transition: 300ms;
+}
+
+.navbar {
+	margin: $col;
+	text-align: right;
+	h5 > *:not(:last-child) {
+		margin-right: $col / 2;
+	}
+}
+
+.page-navigator {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 $col;
+	top: 50%;
+	color: black;
+	position: absolute;
+	z-index: 0;
+	transform: translateY(-50%);
+
+	a {
+		color: black;
+	}
+
+	&.light {
+		color: white;
+
+		a {
+			color: white;
+		}
+	}
+
+	.page-navigator--left {
+		margin-right: auto;
+		&:hover {
+			.page-navigator--icon {
+				transform: translateX(-1vw);
+			}
+			.page-navigator--text {
+				transform: translateX(-1.5vw);
+			}
+		}
+	}
+
+	.page-navigator--right {
+		margin-left: auto;
+		&:hover {
+			.page-navigator--icon {
+				transform: translateX(1vw);
+			}
+			.page-navigator--text {
+				transform: translateX(1.5vw);
+			}
+		}
+	}
+
+	.page-navigator--part {
+		display: flex;
+		align-items: center;
+	}
+
+	.page-navigator--text {
+		@include rem(font-size, 24px);
+		font-weight: bold;
+		transition: 150ms;
+	}
+	.page-navigator--icon {
+		@include rem(font-size, 72px);
+		line-height: 0;
+		transition: 150ms;
+	}
+}
+
+.line-through {
+	text-decoration: none;
+	background: linear-gradient(to bottom, transparent 0%, transparent 54.9%, $yellow 55%, $yellow 65%, $yellow 70%, transparent 70.1%, transparent 100%);
+	animation: grow 1s ease;
+	background-repeat: no-repeat;
+
+	span {
+		display: inline-block;
+		padding-right: $col / 2;
+	}
+}

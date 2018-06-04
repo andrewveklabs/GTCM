@@ -1,10 +1,8 @@
-import CMS from 'netlify-cms'
+import CMS from "netlify-cms";
 
-import AboutPagePreview from './preview-templates/AboutPagePreview'
-import BlogPostPreview from './preview-templates/BlogPostPreview'
-import ProductPagePreview from './preview-templates/ProductPagePreview'
+import WhoWeArePagePreview from "./preview-templates/WhoWeArePagePreview";
+import BlogPostPreview from "./preview-templates/BlogPostPreview";
 
-CMS.registerPreviewStyle('/styles.css')
-CMS.registerPreviewTemplate('about', AboutPagePreview)
-CMS.registerPreviewTemplate('products', ProductPagePreview)
-CMS.registerPreviewTemplate('blog', BlogPostPreview)
+CMS.registerPreviewStyle("/styles.css");
+CMS.registerPreviewTemplate("about", WhoWeArePagePreview);
+CMS.registerPreviewTemplate("blog", BlogPostPreview);

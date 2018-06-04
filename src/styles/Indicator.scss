@@ -1,0 +1,50 @@
+@import "variables";
+@import "mixins";
+
+.indicator {
+	position: absolute;
+	bottom: $col;
+	left: $col;
+	color: black;
+	display: flex;
+	align-items: flex-end;
+
+	&.light {
+		color: white;
+
+		> *::after {
+			background-color: white;
+		}
+	}
+
+	.indicator--current {
+		line-height: 0;
+		display: block;
+		margin: 0;
+		margin-right: 0.5rem;
+		&::after {
+			content: "";
+			display: inline-block;
+			width: 85%;
+			margin-top: 3rem;
+			margin-left: 3.5%;
+			height: 5px;
+		}
+	}
+
+	.indicator--total {
+		opacity: 0.65;
+		margin: 0;
+		line-height: 0;
+		display: block;
+
+		&::after {
+			content: "";
+			display: inline-block;
+			width: 85%;
+			margin-top: 3.75rem;
+			margin-left: 15%;
+			height: 5px;
+		}
+	}
+}

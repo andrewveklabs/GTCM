@@ -1,0 +1,41 @@
+@import "variables";
+@import "mixins";
+
+.latest-post {
+	background: white;
+	width: $col * 8;
+	padding: $col / 2;
+	padding-right: 0;
+	box-sizing: border-box;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	min-width: 500px;
+
+	.latest-post--title {
+		margin: 0;
+		margin-bottom: 1rem;
+		margin-top: -0.5em;
+		max-width: $col * 6;
+	}
+
+	.latest-post--author,
+	.latest-post--date {
+		h5,
+		h6 {
+			display: inline-block;
+			line-height: 0;
+			margin: 0;
+		}
+	}
+
+	.latest-post--divider {
+		font-size: 1.5em;
+	}
+
+	.latest-post--read-link {
+		text-align: right;
+		widows: 100%;
+		padding-right: $col / 2;
+	}
+}
