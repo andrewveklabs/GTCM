@@ -16,7 +16,7 @@ class Page extends Component {
 			<Layout location={location}>
 				<div id={id} className={`${className} Page-Component`} style={{ ...style, ...(transition && transition.style) }} {...others}>
 					<Header color={light ? "white" : "black"} />
-					<Indicator light={light} index={index} totalCount={totalCount} />
+					<Indicator light={light} index={index} totalCount={totalCount + 1} />
 					{children}
 				</div>
 			</Layout>

@@ -41,18 +41,12 @@ h4 {
 
 h5 {
 	@include rem(font-size, 24px);
-	font-weight: 500;
+	font-weight: 400;
 }
 
 h6 {
 	@include rem(font-size, 20px);
 	font-weight: 400;
-}
-
-.zoom {
-	position: absolute;
-	top: 10px;
-	left: 10px;
 }
 
 .Page-Component {
@@ -62,6 +56,10 @@ h6 {
 
 	&.section--gradient-gray {
 		background: $grayGradient;
+	}
+
+	&.section--gradient-yellow {
+		background: $yellowGradient;
 	}
 }
 
@@ -75,6 +73,7 @@ h6 {
 
 .navbar {
 	margin: $col;
+	margin-bottom: 0;
 	text-align: right;
 	h5 > *:not(:last-child) {
 		margin-right: $col / 2;
@@ -136,7 +135,7 @@ h6 {
 
 	.page-navigator--text {
 		@include rem(font-size, 24px);
-		font-weight: bold;
+		font-weight: 500;
 		transition: 150ms;
 	}
 	.page-navigator--icon {

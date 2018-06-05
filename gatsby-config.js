@@ -36,7 +36,7 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-google-fonts`,
 			options: {
-				fonts: [`roboto`]
+				fonts: [`Roboto\:300,400,500,600,700`]
 			}
 		},
 		"gatsby-plugin-netlify" // make sure to keep it last in the array

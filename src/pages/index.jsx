@@ -1,10 +1,6 @@
 import React from "react";
 // import PropTypes from "prop-types";
-
-// import Link from "gatsby-link";
-// import Header from "../components/Header";
 import NewsWidget from "../components/NewsWidget";
-// import Indicator from "../components/Indicator";
 import PageNavigator from "../components/PageNavigator";
 import Page from "../components/Page";
 

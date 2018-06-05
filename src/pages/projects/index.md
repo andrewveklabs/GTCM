@@ -1,5 +1,5 @@
 ---
-templateKey: 'whoweare'
+templateKey: 'projects'
 path: /projects
 title: Our Projects
 level: top

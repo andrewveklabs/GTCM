@@ -1,2 +1,12 @@
 @import "variables";
 @import "mixins";
+
+.double-flex {
+	margin: 0 $col * 4;
+	height: 100%;
+	display: flex;
+
+	.since-date {
+		font-weight: 300;
+	}
+}
