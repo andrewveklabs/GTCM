@@ -10,3 +10,14 @@ $blueGradient: linear-gradient(45deg, #364174, #364b74);
 $grayGradient: linear-gradient(45deg, #dadde5, #e5e5e5);
 $yellowGradient: linear-gradient(45deg, #f2ad4c, #f2c94c);
 $blackGradient: linear-gradient(45deg, #000000, #17181a);
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+		transform: scale(0.75);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

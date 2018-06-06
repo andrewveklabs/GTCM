@@ -3,10 +3,54 @@
 
 .double-flex {
 	margin: 0 $col * 4;
-	height: 100%;
+	// height: 100%;
 	display: flex;
+	align-items: center;
 
-	.since-date {
-		font-weight: 300;
+	.left-side {
+		margin-right: $col * 2.5;
+
+		.since-date {
+			font-weight: 300;
+		}
+
+		.arrow-right {
+			@include rem(font-size, 128px);
+			transform: translateX(-1.5rem);
+			margin: -$col / 2 0 0;
+			color: $blue;
+		}
+	}
+
+	.right-side {
+		.whoweare-image {
+			width: $col * 6;
+		}
+
+		.whoweare-image--caption {
+			width: $col * 6;
+			height: $col * 3;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			background-color: white;
+			padding: $col / 2;
+			box-sizing: border-box;
+			margin-top: -$col * 2;
+			margin-left: -$col;
+			position: relative;
+			z-index: 11;
+
+			.whoweare-image--caption--title {
+				color: $blue;
+				font-weight: 500;
+				margin: 0;
+				@include rem(font-size, 16px);
+			}
+
+			.whoweare-image--caption--body {
+				margin: 0;
+			}
+		}
 	}
 }

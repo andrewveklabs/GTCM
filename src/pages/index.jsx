@@ -1,32 +1,54 @@
 import React from "react";
-// import PropTypes from "prop-types";
-import NewsWidget from "../components/NewsWidget";
-import PageNavigator from "../components/PageNavigator";
-import Page from "../components/Page";
+import SwipeableViews from "react-swipeable-views";
+
+import IndexSlide from "../slides/index";
+import WhoWeAre from "../slides/whoweare";
+import Projects from "../slides/projects";
 
 import bg from "../../static/img/home-hero.jpg";
+import "normalize.css";
+import "../styles/main.scss";
 import "../styles/index.scss";
+import "../styles/whoweare.scss";
 
-const IndexPage = ({ data, transition }) => {
-	const { title, date } = data.allMarkdownRemark.edges[0].node.frontmatter;
-	const { slug } = data.allMarkdownRemark.edges[0].node.fields;
-	const { totalCount } = data.totalPages;
+class IndexPage extends React.Component {
+	componentDidMount() {
+		//Collect Screenshots of pages
+	}
 
-	return (
-		<Page transition={transition} index={1} totalCount={totalCount} light id="front-page" className="top-level-page page" style={{ backgroundImage: `url(${bg})` }}>
-			<PageNavigator light next={{ title: "Who We Are", url: "/whoweare" }} />
-			<NewsWidget slug={slug} title={title} date={date} author="GTCM" />
-		</Page>
-	);
-};
+	render() {
+		const data = this.props.data;
+		const { totalCount } = this.props.data.totalPages;
+
+		return (
+			<SwipeableViews resistance enableMouseEvents slideStyle={{ position: "relative" }}>
+				<IndexSlide totalCount={totalCount} slug={data.NewsWidget.edges[0].node.fields.slug} title={data.NewsWidget.edges[0].node.frontmatter.title} date={data.NewsWidget.edges[0].node.frontmatter.date} bg={bg} />
+				<WhoWeAre
+					totalCount={totalCount}
+					title={data.WhoWeAre.edges[0].node.frontmatter.title}
+					image={data.WhoWeAre.edges[0].node.frontmatter.image}
+					caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
+					index={data.WhoWeAre.edges[0].node.frontmatter.index}
+					content={data.WhoWeAre.edges[0].node.html}
+				/>
+				<Projects
+					totalCount={totalCount}
+					title={data.Projects.edges[0].node.frontmatter.title}
+					image={data.WhoWeAre.edges[0].node.frontmatter.image}
+					caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
+					index={data.Projects.edges[0].node.frontmatter.index}
+					projects={data.SingleProject.edges}
+				/>
+			</SwipeableViews>
+		);
+	}
+}
 
 export default IndexPage;
 
-IndexPage.propTypes = {};
-
 export const pageQuery = graphql`
-	query IndexQuery {
-		allMarkdownRemark(limit: 1, sort: { order: DESC, fields: [frontmatter___date] }, filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
+	query Pages {
+		NewsWidget: allMarkdownRemark(limit: 1, sort: { order: DESC, fields: [frontmatter___date] }, filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
 			edges {
 				node {
 					id
@@ -36,6 +58,45 @@ export const pageQuery = graphql`
 					frontmatter {
 						title
 						date(formatString: "YYYY")
+					}
+				}
+			}
+		}
+		Projects: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "projects" } } }) {
+			edges {
+				node {
+					frontmatter {
+						title
+						index
+					}
+				}
+			}
+		}
+		SingleProject: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "single-project" } } }) {
+			edges {
+				node {
+					id
+					frontmatter {
+						title
+						image
+						type
+						features {
+							title
+							icon
+						}
+					}
+				}
+			}
+		}
+		WhoWeAre: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "whoweare" } } }) {
+			edges {
+				node {
+					html
+					frontmatter {
+						title
+						index
+						image
+						caption
 					}
 				}
 			}

@@ -9,7 +9,6 @@ import { IoIosArrowRight } from "react-icons/lib/io";
 const ButtonLink = styled(Link)`
 	color: ${styleguide.blue};
 	text-transform: uppercase;
-	font-weight: 500;
 	float: right;
 	margin-top: 0.2em;
 	padding-right: ${styleguide.col / 2}vw
@@ -20,9 +19,9 @@ const ButtonLink = styled(Link)`
 	}
 `;
 
-const Button = ({ children, to }) => {
+const Button = ({ children, to = "", simple }) => {
 	return (
-		<ButtonLink to={to}>
+		<ButtonLink simple={simple} to={to}>
 			{children}
 			<IoIosArrowRight style={{ marginTop: "-0.2em" }} />
 		</ButtonLink>

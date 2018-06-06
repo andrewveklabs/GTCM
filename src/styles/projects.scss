@@ -1,0 +1,42 @@
+@import "variables";
+@import "mixins";
+
+.project-grid {
+	display: grid;
+	grid-template-columns: $col * 5.5 $col * 5.5;
+	grid-template-rows: 1fr 1fr;
+	grid-column-gap: $col;
+	grid-row-gap: $col;
+	width: $col * 14;
+	margin: 0 auto;
+}
+
+.project-card {
+	background: white;
+	transition: 300ms $bezier;
+
+	&:hover {
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+		transform: translateY(-5%);
+	}
+
+	.project-card--image {
+		width: 100%;
+		height: $col * 2;
+		object-fit: cover;
+	}
+
+	.project-card--bottom {
+		padding: $col / 4 $col / 3;
+		box-sizing: border-box;
+
+		.project-card--title {
+			margin: 0;
+			line-height: 1.2;
+		}
+
+		.project-card--type {
+			color: $blue;
+		}
+	}
+}

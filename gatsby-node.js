@@ -33,15 +33,17 @@ exports.createPages = ({ actions, graphql }) => {
 		posts.forEach(edge => {
 			const id = edge.node.id;
 			const index = edge.node.frontmatter.index;
-			createPage({
-				path: edge.node.fields.slug,
-				component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.jsx`),
-				// additional data can be passed via context
-				context: {
-					id,
-					index
-				}
-			});
+			if (edge.node.frontmatter.templateKey == "single-project" || edge.node.frontmatter.templateKey == "blog-post") {
+				createPage({
+					path: edge.node.fields.slug,
+					component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.jsx`),
+					// additional data can be passed via context
+					context: {
+						id,
+						index
+					}
+				});
+			}
 		});
 	});
 };
