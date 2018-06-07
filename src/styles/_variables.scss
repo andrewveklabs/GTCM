@@ -21,3 +21,12 @@ $blackGradient: linear-gradient(45deg, #000000, #17181a);
 		transform: scale(1);
 	}
 }
+
+@keyframes tick {
+	from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}

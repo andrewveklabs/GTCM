@@ -1,7 +1,7 @@
 ---
 templateKey: 'projects'
 path: /projects
-title: Our Projects
+title: Projects
 level: top
 index: 3
 ---
