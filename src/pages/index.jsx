@@ -3,6 +3,9 @@ import NavigatorArrow from "../components/NavigatorArrow";
 import Indicator from "../components/Indicator";
 import SwipeableViews from "react-swipeable-views";
 import { bindKeyboard } from "react-swipeable-views-utils";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import SwipeableRoutes from "react-swipeable-routes";
+import Helmet from "react-helmet";
 
 import IndexSlide from "../slides/index";
 import WhoWeAre from "../slides/whoweare";
@@ -17,7 +20,7 @@ import "../styles/main.scss";
 import "../styles/index.scss";
 import "../styles/whoweare.scss";
 
-const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
+const BindKeyboardSwipeableRoutes = bindKeyboard(SwipeableRoutes);
 
 class IndexPage extends Component {
 	constructor(props) {
@@ -26,7 +29,8 @@ class IndexPage extends Component {
 			index: 0,
 			light: true,
 			prevTitle: "",
-			nextTitle: "Who We Are"
+			nextTitle: "Who We Are",
+			title: "Home"
 		};
 	}
 
@@ -39,7 +43,8 @@ class IndexPage extends Component {
 			index: index,
 			prevTitle: pages[index].prevTitle,
 			nextTitle: pages[index].nextTitle,
-			light: pages[index].light
+			light: pages[index].light,
+			title: pages[index].title
 		});
 	};
 
@@ -48,7 +53,8 @@ class IndexPage extends Component {
 			index: prevState.index + 1,
 			prevTitle: pages[prevState.index + 1].prevTitle,
 			nextTitle: pages[prevState.index + 1].nextTitle,
-			light: pages[prevState.index + 1].light
+			light: pages[prevState.index + 1].light,
+			title: pages[prevState.index + 1].title
 		}));
 	};
 
@@ -57,7 +63,8 @@ class IndexPage extends Component {
 			index: prevState.index - 1,
 			prevTitle: pages[prevState.index - 1].prevTitle,
 			nextTitle: pages[prevState.index - 1].nextTitle,
-			light: pages[prevState.index - 1].light
+			light: pages[prevState.index - 1].light,
+			title: pages[prevState.index - 1].title
 		}));
 	};
 
@@ -67,14 +74,42 @@ class IndexPage extends Component {
 
 		return (
 			<Fragment>
-				<BindKeyboardSwipeableViews resistance enableMouseEvents ignoreNativeScroll index={this.state.index} onChangeIndex={this.slideDidSwitch} slideStyle={{ position: "relative" }}>
-					<IndexSlide slug={data.NewsWidget.edges[0].node.fields.slug} title={data.NewsWidget.edges[0].node.frontmatter.title} date={data.NewsWidget.edges[0].node.frontmatter.date} light={this.state.light} bg={bg} />
-					<WhoWeAre title={data.WhoWeAre.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} content={data.WhoWeAre.edges[0].node.html} />
-					<Projects title={data.Projects.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} projects={data.SingleProject.edges} />
-					<Team title={data.Team.edges[0].node.frontmatter.title} members={data.Team.edges[0].node.frontmatter.members} />
-					<Contact title="Contact" light={this.state.light} blueLine />
-					<News title="News" />
-				</BindKeyboardSwipeableViews>
+				<Helmet title={`GTCM | ${this.state.title}`} />
+				<Router>
+					<BindKeyboardSwipeableRoutes resistance enableMouseEvents ignoreNativeScroll index={this.state.index} onChangeIndex={this.slideDidSwitch} slideStyle={{ position: "relative" }}>
+						<Route
+							exact
+							path="/"
+							children={match => (
+								<IndexSlide slug={data.NewsWidget.edges[0].node.fields.slug} title={data.NewsWidget.edges[0].node.frontmatter.title} date={data.NewsWidget.edges[0].node.frontmatter.date} light={this.state.light} bg={bg} />
+							)}
+						/>
+						<Route
+							exact
+							path="whoweare"
+							children={match => (
+								<WhoWeAre
+									title={data.WhoWeAre.edges[0].node.frontmatter.title}
+									image={data.WhoWeAre.edges[0].node.frontmatter.image}
+									caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
+									content={data.WhoWeAre.edges[0].node.html}
+								/>
+							)}
+						/>
+						<Route path="projects">
+							<Projects title={data.Projects.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} projects={data.SingleProject.edges} />
+						</Route>
+						<Route path="team">
+							<Team title={data.Team.edges[0].node.frontmatter.title} members={data.Team.edges[0].node.frontmatter.members} />
+						</Route>
+						<Route path="contact">
+							<Contact title={data.Contact.edges[0].node.frontmatter.title} tagline={data.Contact.edges[0].node.frontmatter.tagline} light={this.state.light} blueLine />
+						</Route>
+						<Route path="news">
+							<News title="News" />
+						</Route>
+					</BindKeyboardSwipeableRoutes>
+				</Router>
 				<div className={`page-navigator ${this.state.light ? "light" : ""}`}>
 					{this.state.prevTitle !== "" ? <NavigatorArrow onClick={this.backwardSlide} text={this.state.prevTitle} left /> : ""}
 					{this.state.nextTitle !== "" ? <NavigatorArrow onClick={this.forwardSlide} text={this.state.nextTitle} right /> : ""}
@@ -194,6 +229,17 @@ export const pageQuery = graphql`
 							title
 							image
 						}
+					}
+				}
+			}
+		}
+		Contact: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "contact" } } }) {
+			edges {
+				node {
+					frontmatter {
+						title
+						index
+						tagline
 					}
 				}
 			}

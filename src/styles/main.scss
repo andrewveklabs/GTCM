@@ -109,6 +109,7 @@ h6 {
 	z-index: 0;
 	transform: translateY(-50%);
 	user-select: none;
+	pointer-events: none;
 	transition: 225ms $bezier;
 
 	div,
@@ -128,6 +129,8 @@ h6 {
 
 	.page-navigator--left {
 		margin-right: auto;
+		pointer-events: all;
+
 		&:hover {
 			.page-navigator--icon {
 				transform: translateX(-1vw);
@@ -140,6 +143,8 @@ h6 {
 
 	.page-navigator--right {
 		margin-left: auto;
+		pointer-events: all;
+
 		&:hover {
 			.page-navigator--icon {
 				transform: translateX(1vw);
