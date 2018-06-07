@@ -1,12 +1,12 @@
 ---
 templateKey: single-project
-title: Test Project
+title: Garden Meadow
 date: 2016-12-17T15:04:10.000Z
 description: This is a test project description
 image: /img/flavor_wheel.jpg
-type: Institutional
+type: Educational
 features:
-  - {title: Feature, icon: check}
+  - {title: snow, icon: snow}
   - {title: light, icon: light}
 ---
 
