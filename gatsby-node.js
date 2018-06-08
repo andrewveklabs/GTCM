@@ -1,6 +1,7 @@
 const _ = require("lodash");
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
+const Promise = require(`bluebird`);
 
 exports.createPages = ({ actions, graphql }) => {
 	const { createPage } = actions;
@@ -45,6 +46,19 @@ exports.createPages = ({ actions, graphql }) => {
 				});
 			}
 		});
+	});
+};
+
+exports.onCreatePage = ({ page, actions }) => {
+	const { createPage } = actions;
+	return new Promise((resolve, reject) => {
+		// Make the front page match everything client side.
+		// Normally your paths should be a bit more judicious.
+		if (page.path === `/`) {
+			page.matchPath = `/:path`;
+			createPage(page);
+		}
+		resolve();
 	});
 };
 

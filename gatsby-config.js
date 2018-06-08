@@ -6,10 +6,6 @@ module.exports = {
 		"gatsby-plugin-react-helmet",
 		"gatsby-plugin-sass",
 		{
-			resolve: `gatsby-plugin-create-client-paths`,
-			options: { prefixes: [`/*`] }
-		},
-		{
 			resolve: "gatsby-source-filesystem",
 			options: {
 				path: `${__dirname}/src/pages`,
