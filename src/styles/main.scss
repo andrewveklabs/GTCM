@@ -18,6 +18,10 @@ body {
 	background-image: $blueGradient;
 }
 
+textarea {
+	resize: none;
+}
+
 a {
 	text-decoration: none;
 	transition: 300ms;

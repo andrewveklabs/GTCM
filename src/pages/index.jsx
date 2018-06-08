@@ -2,7 +2,7 @@ import React, { Fragment, Component } from "react";
 import NavigatorArrow from "../components/NavigatorArrow";
 import Indicator from "../components/Indicator";
 import { bindKeyboard } from "react-swipeable-views-utils";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import SwipeableRoutes from "react-swipeable-routes";
 import Helmet from "react-helmet";
 
@@ -29,7 +29,8 @@ class IndexPage extends Component {
 			light: true,
 			prevTitle: "",
 			nextTitle: "Who We Are",
-			title: "Home"
+			title: "Home",
+			explore: false
 		};
 	}
 
@@ -47,21 +48,13 @@ class IndexPage extends Component {
 
 	forwardSlide = () => {
 		this.setState(prevState => ({
-			index: prevState.index + 1,
-			prevTitle: pages[prevState.index + 1].prevTitle,
-			nextTitle: pages[prevState.index + 1].nextTitle,
-			light: pages[prevState.index + 1].light,
-			title: pages[prevState.index + 1].title
+			index: prevState.index + 1
 		}));
 	};
 
 	backwardSlide = () => {
 		this.setState(prevState => ({
-			index: prevState.index - 1,
-			prevTitle: pages[prevState.index - 1].prevTitle,
-			nextTitle: pages[prevState.index - 1].nextTitle,
-			light: pages[prevState.index - 1].light,
-			title: pages[prevState.index - 1].title
+			index: prevState.index - 1
 		}));
 	};
 
@@ -93,6 +86,7 @@ class IndexPage extends Component {
 							<News title="News" />
 						</Route>
 					</BindKeyboardSwipeableRoutes>
+					{/* Add Explore Router and Component */}
 				</Router>
 				<div className={`page-navigator ${this.state.light ? "light" : ""}`}>
 					{this.state.prevTitle !== "" ? <NavigatorArrow onClick={this.backwardSlide} text={this.state.prevTitle} left /> : ""}
