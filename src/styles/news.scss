@@ -1,0 +1,39 @@
+@import "variables";
+@import "mixins";
+
+.featured-post {
+	margin-top: $col;
+	width: $col * 8;
+
+	.featured-post--image {
+		width: $col * 8;
+		height: $col * 5;
+		object-fit: cover;
+	}
+
+	.featured-post--info {
+		background-color: #fff;
+		padding: $col / 4 $col / 2;
+		box-sizing: border-box;
+		transform: translateY(-$col) translateX($col);
+
+		.featured-post--title {
+			margin: 0;
+		}
+
+		.featured-post--author {
+			float: right;
+			margin-top: -1rem;
+		}
+	}
+}
+
+.post-list {
+	.post-list--item {
+		.post-list--image {
+			width: $col * 2;
+			height: $col * 2;
+			background-color: #ccc;
+		}
+	}
+}

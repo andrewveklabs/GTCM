@@ -64,6 +64,10 @@
 					box-sizing: border-box;
 					width: $col * 6;
 
+					&:focus {
+						outline: none;
+					}
+
 					&:not(:first-child) {
 						margin-top: $col / 4;
 					}

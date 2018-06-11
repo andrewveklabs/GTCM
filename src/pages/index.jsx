@@ -58,6 +58,10 @@ class IndexPage extends Component {
 		}));
 	};
 
+	explore = () => {
+		this.setState({ explore: true });
+	};
+
 	render() {
 		const data = this.props.data;
 		const { totalCount } = this.props.data.totalPages;
@@ -65,29 +69,63 @@ class IndexPage extends Component {
 		return (
 			<Fragment>
 				<Helmet title={`GTCM | ${this.state.title}`} />
-				<Router>
-					<BindKeyboardSwipeableRoutes resistance enableMouseEvents ignoreNativeScroll index={this.state.index} onChangeIndex={this.slideDidSwitch} slideStyle={{ position: "relative" }}>
-						<Route exact path="/">
-							<IndexSlide slug={data.NewsWidget.edges[0].node.fields.slug} title={data.NewsWidget.edges[0].node.frontmatter.title} date={data.NewsWidget.edges[0].node.frontmatter.date} light={this.state.light} bg={bg} />
-						</Route>
-						<Route path="/whoweare">
-							<WhoWeAre title={data.WhoWeAre.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} content={data.WhoWeAre.edges[0].node.html} />
-						</Route>
-						<Route path="/projects">
-							<Projects title={data.Projects.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} projects={data.SingleProject.edges} />
-						</Route>
-						<Route path="/team">
-							<Team title={data.Team.edges[0].node.frontmatter.title} members={data.Team.edges[0].node.frontmatter.members} />
-						</Route>
-						<Route path="/contact">
-							<Contact title={data.Contact.edges[0].node.frontmatter.title} tagline={data.Contact.edges[0].node.frontmatter.tagline} light={this.state.light} blueLine />
-						</Route>
-						<Route path="/news">
-							<News title="News" />
-						</Route>
-					</BindKeyboardSwipeableRoutes>
-					{/* Add Explore Router and Component */}
-				</Router>
+				{typeof window !== "undefined" ? (
+					<Router>
+						<Fragment>
+							<BindKeyboardSwipeableRoutes
+								resistance
+								enableMouseEvents
+								ignoreNativeScroll
+								index={this.state.index}
+								onChangeIndex={this.slideDidSwitch}
+								slideStyle={{ position: "relative", transform: this.state.explore ? "scale(0.5" : "" }}>
+								<Route exact path="/">
+									<IndexSlide
+										author={data.NewsWidget.edges[0].node.frontmatter.author}
+										slug={data.NewsWidget.edges[0].node.fields.slug}
+										title={data.NewsWidget.edges[0].node.frontmatter.title}
+										date={data.NewsWidget.edges[0].node.frontmatter.date}
+										light={this.state.light}
+										bg={bg}
+									/>
+								</Route>
+								<Route path="/whoweare">
+									<WhoWeAre
+										title={data.WhoWeAre.edges[0].node.frontmatter.title}
+										image={data.WhoWeAre.edges[0].node.frontmatter.image}
+										caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
+										content={data.WhoWeAre.edges[0].node.html}
+									/>
+								</Route>
+								<Route path="/projects">
+									<Projects
+										title={data.Projects.edges[0].node.frontmatter.title}
+										image={data.WhoWeAre.edges[0].node.frontmatter.image}
+										caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
+										projects={data.SingleProject.edges}
+									/>
+								</Route>
+								<Route path="/team">
+									<Team title={data.Team.edges[0].node.frontmatter.title} members={data.Team.edges[0].node.frontmatter.members} />
+								</Route>
+								<Route path="/contact">
+									<Contact
+										title={data.Contact.edges[0].node.frontmatter.title}
+										tagline={data.Contact.edges[0].node.frontmatter.tagline}
+										light={this.state.light}
+										blueLine
+									/>
+								</Route>
+								<Route path="/news">
+									<News title={data.News.edges[0].node.frontmatter.title} posts={data.Posts.edges} />
+								</Route>
+							</BindKeyboardSwipeableRoutes>
+							<Route path="/explore" render={this.explore} />
+						</Fragment>
+					</Router>
+				) : (
+					""
+				)}
 				<div className={`page-navigator ${this.state.light ? "light" : ""}`}>
 					{this.state.prevTitle !== "" ? <NavigatorArrow onClick={this.backwardSlide} text={this.state.prevTitle} left /> : ""}
 					{this.state.nextTitle !== "" ? <NavigatorArrow onClick={this.forwardSlide} text={this.state.nextTitle} right /> : ""}
@@ -143,7 +181,11 @@ export default IndexPage;
 
 export const pageQuery = graphql`
 	query Pages {
-		NewsWidget: allMarkdownRemark(limit: 1, sort: { order: DESC, fields: [frontmatter___date] }, filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
+		NewsWidget: allMarkdownRemark(
+			limit: 1
+			sort: { order: DESC, fields: [frontmatter___date] }
+			filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+		) {
 			edges {
 				node {
 					id
@@ -152,6 +194,7 @@ export const pageQuery = graphql`
 					}
 					frontmatter {
 						title
+						author
 						date(formatString: "YYYY")
 					}
 				}
@@ -218,6 +261,30 @@ export const pageQuery = graphql`
 						title
 						index
 						tagline
+					}
+				}
+			}
+		}
+		Posts: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "blog-post" } } }, sort: { order: DESC, fields: [frontmatter___date] }) {
+			edges {
+				node {
+					id
+					frontmatter {
+						title
+						date
+						description
+						tags
+						image
+						author
+					}
+				}
+			}
+		}
+		News: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "news" } } }) {
+			edges {
+				node {
+					frontmatter {
+						title
 					}
 				}
 			}

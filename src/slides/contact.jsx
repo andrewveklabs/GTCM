@@ -18,7 +18,7 @@ const Contact = ({ title, light, blueLine, tagline }) => (
 				</div>
 			</div>
 			<div className="right-side">
-				<form action="POST" className="contact-form" netlify netlify={true} id="contact-form">
+				<form action="POST" className="contact-form" netlify={true} id="contact-form">
 					<input type="text" className="contact-name" placeholder="Name" />
 					<input type="email" className="contact-email" placeholder="Email" />
 					<textarea name="contact-message" id="contact-message" cols="30" rows="10" className="contact-message" placeholder="Message" />
