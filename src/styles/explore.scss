@@ -1,0 +1,45 @@
+@import "variables";
+@import "mixins";
+
+.explore-view {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50vw;
+	height: 100vh;
+	padding: 25vw;
+	padding-top: calc(25vh - 3rem);
+
+	.explore-image {
+		img {
+			width: 100%;
+			border-radius: 10px;
+			box-shadow: 0 20px 20px rgba(0, 0, 0, 0.25);
+		}
+	}
+
+	.explore-page-title {
+		color: white;
+		margin: 0;
+		margin-bottom: 1rem;
+		margin-left: 1rem;
+		font-weight: bold;
+	}
+	.react-swipeable-view-container {
+		// margin-left: -5rem;
+
+		> div {
+			cursor: pointer;
+			transform: scale(0.8) translate3d(0, 0, 0);
+			transition: 225ms $bezier;
+
+			&:first-child {
+				transform: transformX(25vw);
+			}
+
+			&[aria-hidden="false"] {
+				transform: scale(1);
+			}
+		}
+	}
+}

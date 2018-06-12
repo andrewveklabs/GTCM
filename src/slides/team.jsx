@@ -1,5 +1,6 @@
 import React from "react";
 import Page from "../components/Page";
+import { Link } from "react-router-dom";
 import "../styles/team.scss";
 
 const Team = ({ title, members }) => (
@@ -14,6 +15,11 @@ const Team = ({ title, members }) => (
 					</div>
 				</div>
 			))}
+		</div>
+		<div className="team-careers">
+			<Link className="team-careers--button" to="/careers">
+				Careers
+			</Link>
 		</div>
 	</Page>
 );
