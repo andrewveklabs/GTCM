@@ -39,30 +39,32 @@ class IndexPage extends Component {
 	}
 
 	componentDidMount() {
-		setTimeout(() => {
-			let slides = document.querySelectorAll(".react-swipeable-view-container > div > div");
-			let screenshots = [];
-			slides.forEach(async slide => {
-				try {
-					await html2canvas(slide, {
-						profile: true,
-						ignoreElements: element => {
-							return element.className === "ignored";
-						}
-					}).then(canvas => {
-						var ctx = canvas.getContext("2d");
-						ctx.webkitImageSmoothingEnabled = false;
-						ctx.mozImageSmoothingEnabled = false;
-						ctx.imageSmoothingEnabled = false;
-						screenshots.push(canvas.toDataURL("image/jpeg"));
-						this.setState({ screenshots: screenshots });
-					});
-					if (screenshots.length === 6) this.setState({ screenshotsLoaded: true });
-				} catch (err) {
-					console.log(err);
-				}
-			});
-		}, 500);
+		if (!this.state.screenshotsLoaded) {
+			setTimeout(() => {
+				let slides = document.querySelectorAll(".react-swipeable-view-container > div > div");
+				let screenshots = [];
+				slides.forEach(async (slide, index) => {
+					try {
+						await html2canvas(slide, {
+							profile: true,
+							ignoreElements: element => {
+								return element.className === "ignored";
+							}
+						}).then(canvas => {
+							var ctx = canvas.getContext("2d");
+							ctx.webkitImageSmoothingEnabled = false;
+							ctx.mozImageSmoothingEnabled = false;
+							ctx.imageSmoothingEnabled = false;
+							screenshots.push({ imageData: canvas.toDataURL("image/jpeg"), index: index });
+							this.setState({ screenshots: screenshots });
+						});
+						if (screenshots.length === 6) this.setState({ screenshotsLoaded: true });
+					} catch (err) {
+						console.log(err);
+					}
+				});
+			}, 500);
+		}
 	}
 
 	slideDidSwitch = index => {
@@ -168,22 +170,29 @@ class IndexPage extends Component {
 					""
 				)}
 				{this.state.screenshotsLoaded && this.state.explore ? (
-					<Explore index={this.state.index} pageInfo={pages} images={this.state.screenshots} />
+					<Router>
+						<Route path="/explore">
+							<Explore index={this.state.index} pageInfo={pages} images={this.state.screenshots} />
+						</Route>
+					</Router>
 				) : (
 					""
 				)}
 				{this.state.screenshotsLoaded && this.state.explore ? (
 					""
 				) : (
-					<div className={`page-navigator ${this.state.light ? "light" : ""}`}>
-						{this.state.prevTitle !== "" ? <NavigatorArrow onClick={this.backwardSlide} text={this.state.prevTitle} left /> : ""}
-						{this.state.nextTitle !== "" ? <NavigatorArrow onClick={this.forwardSlide} text={this.state.nextTitle} right /> : ""}
-					</div>
+					<Fragment>
+						<div className={`page-navigator ${this.state.light ? "light" : ""}`}>
+							{this.state.prevTitle !== "" ? <NavigatorArrow onClick={this.backwardSlide} text={this.state.prevTitle} left /> : ""}
+							{this.state.nextTitle !== "" ? <NavigatorArrow onClick={this.forwardSlide} text={this.state.nextTitle} right /> : ""}
+						</div>
+
+						<Indicator light={this.state.light} index={this.state.index + 1} totalCount={totalCount + 1} />
+					</Fragment>
 				)}
 				<button onClick={this.explore} style={{ position: "absolute", left: 0, top: 0 }}>
 					Explore
 				</button>
-				<Indicator light={this.state.light} index={this.state.index + 1} totalCount={totalCount + 1} />
 			</Fragment>
 		);
 	}
