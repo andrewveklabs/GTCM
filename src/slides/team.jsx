@@ -3,7 +3,7 @@ import Page from "../components/Page";
 import "../styles/team.scss";
 
 const Team = ({ title, members }) => (
-	<Page title={title} className="section section--team section--gradient-gray">
+	<Page title={title} className="section section--gradient-gray">
 		<div className="team-members">
 			{members.map(member => (
 				<div className="team-member">
