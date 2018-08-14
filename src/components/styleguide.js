@@ -1,5 +1,5 @@
 const styleguide = {
-	blue: "#3B52BF",
+	blue: "#6E98AA",
 	col: 4.1666666667,
 	bezier: "0.21, 0, 0, 1"
 };

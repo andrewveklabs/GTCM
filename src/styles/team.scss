@@ -1,0 +1,43 @@
+@import "variables";
+@import "mixins";
+
+.team-members {
+	display: grid;
+	grid-template-columns: repeat(4, $col * 3);
+	grid-column-gap: $col;
+	justify-content: center;
+	align-items: center;
+	height: 80%;
+
+	.team-member {
+		cursor: pointer;
+
+		&:hover .team-member--info {
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+			transform: translateX($col / 2) translateY(-78%);
+		}
+
+		.team-member--image {
+			height: $col * 5;
+			border-radius: $borderRadius;
+		}
+
+		.team-member--info {
+			background-color: white;
+			padding: $col / 4;
+			transform: translateX($col / 2) translateY(-75%);
+			transition: 225ms $bezier;
+			z-index: 999;
+			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+			border-radius: $borderRadius;
+
+			.team-member--name {
+				margin: 0;
+			}
+
+			.team-member--title {
+				color: $blue;
+			}
+		}
+	}
+}

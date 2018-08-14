@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/indicator.scss";
+import "../styles/Indicator.scss";
 
 export default class Indicator extends Component {
 	render() {

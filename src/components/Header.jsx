@@ -12,8 +12,8 @@ const StyledNav = styled.nav`
 const Header = ({ color = "black" }) => (
 	<StyledNav className="navbar" color={color}>
 		<h5>
-			<Link to="explore" exact>
-				Explore
+			<Link to="menu" exact>
+				Menu
 			</Link>
 			<Link to="contact">Contact</Link>
 			<span className="navbar-divider">|</span>

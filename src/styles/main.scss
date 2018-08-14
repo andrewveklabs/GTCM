@@ -58,6 +58,10 @@ h6 {
 		background: $grayGradient;
 	}
 
+	&.section--gradient-black {
+		background: $blackGradient;
+	}
+
 	&.section--gradient-yellow {
 		background: $yellowGradient;
 	}
@@ -147,7 +151,16 @@ h6 {
 
 .line-through {
 	text-decoration: none;
-	background: linear-gradient(to bottom, transparent 0%, transparent 54.9%, $yellow 55%, $yellow 65%, $yellow 70%, transparent 70.1%, transparent 100%);
+	background: linear-gradient(
+		to bottom,
+		transparent 0%,
+		transparent 54.9%,
+		$yellow 55%,
+		$yellow 65%,
+		$yellow 70%,
+		transparent 70.1%,
+		transparent 100%
+	);
 	animation: grow 1s ease;
 	background-repeat: no-repeat;
 
