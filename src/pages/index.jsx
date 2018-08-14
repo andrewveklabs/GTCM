@@ -71,7 +71,7 @@ class IndexPage extends Component {
 					<IndexSlide slug={data.NewsWidget.edges[0].node.fields.slug} title={data.NewsWidget.edges[0].node.frontmatter.title} date={data.NewsWidget.edges[0].node.frontmatter.date} light={this.state.light} bg={bg} />
 					<WhoWeAre title={data.WhoWeAre.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} content={data.WhoWeAre.edges[0].node.html} />
 					<Projects title={data.Projects.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} projects={data.SingleProject.edges} />
-					<Team title={data.Team.edges[0].node.frontmatter.title} members={data.Team.edges[0].node.frontmatter.members} />
+					<Team title="Team" />
 					<Contact title="Contact" light={this.state.light} blueLine />
 					<News title="News" />
 				</BindKeyboardSwipeableViews>
@@ -179,21 +179,6 @@ export const pageQuery = graphql`
 						index
 						image
 						caption
-					}
-				}
-			}
-		}
-		Team: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "team" } } }) {
-			edges {
-				node {
-					frontmatter {
-						title
-						index
-						members {
-							name
-							title
-							image
-						}
 					}
 				}
 			}
