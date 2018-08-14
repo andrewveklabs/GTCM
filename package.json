@@ -10,7 +10,7 @@
 		"gatsby-plugin-create-client-paths": "next",
 		"gatsby-plugin-google-fonts": "^0.0.4",
 		"gatsby-plugin-netlify": "next",
-		"gatsby-plugin-netlify-cms": "latest",
+		"gatsby-plugin-netlify-cms": "^2.0.1",
 		"gatsby-plugin-react-helmet": "^2.0.5",
 		"gatsby-plugin-sass": "next",
 		"gatsby-plugin-sharp": "^1.6.34",
