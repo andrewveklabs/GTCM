@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from "react";
 import NavigatorArrow from "../components/NavigatorArrow";
 import Indicator from "../components/Indicator";
+import SwipeableViews from "react-swipeable-views";
 import { bindKeyboard } from "react-swipeable-views-utils";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SwipeableRoutes from "react-swipeable-routes";
@@ -33,9 +34,11 @@ class IndexPage extends Component {
 		};
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		//Collect Screenshots of pages
+	}
 
-	slideDidSwitch = index => {
+	slideDidSwitch = (index, indexLatest, meta) => {
 		this.setState({
 			index: index,
 			prevTitle: pages[index].prevTitle,
@@ -74,22 +77,35 @@ class IndexPage extends Component {
 				<Helmet title={`GTCM | ${this.state.title}`} />
 				<Router>
 					<BindKeyboardSwipeableRoutes resistance enableMouseEvents ignoreNativeScroll index={this.state.index} onChangeIndex={this.slideDidSwitch} slideStyle={{ position: "relative" }}>
-						<Route exact path="/">
-							<IndexSlide slug={data.NewsWidget.edges[0].node.fields.slug} title={data.NewsWidget.edges[0].node.frontmatter.title} date={data.NewsWidget.edges[0].node.frontmatter.date} light={this.state.light} bg={bg} />
-						</Route>
-						<Route path="/whoweare">
-							<WhoWeAre title={data.WhoWeAre.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} content={data.WhoWeAre.edges[0].node.html} />
-						</Route>
-						<Route path="/projects">
+						<Route
+							exact
+							path="/"
+							children={match => (
+								<IndexSlide slug={data.NewsWidget.edges[0].node.fields.slug} title={data.NewsWidget.edges[0].node.frontmatter.title} date={data.NewsWidget.edges[0].node.frontmatter.date} light={this.state.light} bg={bg} />
+							)}
+						/>
+						<Route
+							exact
+							path="whoweare"
+							children={match => (
+								<WhoWeAre
+									title={data.WhoWeAre.edges[0].node.frontmatter.title}
+									image={data.WhoWeAre.edges[0].node.frontmatter.image}
+									caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
+									content={data.WhoWeAre.edges[0].node.html}
+								/>
+							)}
+						/>
+						<Route path="projects">
 							<Projects title={data.Projects.edges[0].node.frontmatter.title} image={data.WhoWeAre.edges[0].node.frontmatter.image} caption={data.WhoWeAre.edges[0].node.frontmatter.caption} projects={data.SingleProject.edges} />
 						</Route>
-						<Route path="/team">
+						<Route path="team">
 							<Team title={data.Team.edges[0].node.frontmatter.title} members={data.Team.edges[0].node.frontmatter.members} />
 						</Route>
-						<Route path="/contact">
+						<Route path="contact">
 							<Contact title={data.Contact.edges[0].node.frontmatter.title} tagline={data.Contact.edges[0].node.frontmatter.tagline} light={this.state.light} blueLine />
 						</Route>
-						<Route path="/news">
+						<Route path="news">
 							<News title="News" />
 						</Route>
 					</BindKeyboardSwipeableRoutes>
