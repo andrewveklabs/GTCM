@@ -1,5 +1,5 @@
-// const _ = require("lodash");
-// const path = require("path");
+const _ = require("lodash");
+const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 const Promise = require(`bluebird`);
 
