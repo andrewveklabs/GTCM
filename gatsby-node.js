@@ -3,51 +3,51 @@ const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 const Promise = require(`bluebird`);
 
-// exports.createPages = ({ actions, graphql }) => {
-// 	const { createPage } = actions;
+exports.createPages = ({ actions, graphql }) => {
+	const { createPage } = actions;
 
-// 	return graphql(`
-// 		{
-// 			allMarkdownRemark(limit: 1000) {
-// 				edges {
-// 					node {
-// 						id
-// 						fields {
-// 							slug
-// 						}
-// 						frontmatter {
-// 							templateKey
-// 							index
-// 						}
-// 					}
-// 				}
-// 			}
-// 		}
-// 	`).then(result => {
-// 		if (result.errors) {
-// 			result.errors.forEach(e => console.error(e.toString()));
-// 			return Promise.reject(result.errors);
-// 		}
+	return graphql(`
+		{
+			allMarkdownRemark(limit: 1000) {
+				edges {
+					node {
+						id
+						fields {
+							slug
+						}
+						frontmatter {
+							templateKey
+							index
+						}
+					}
+				}
+			}
+		}
+	`).then(result => {
+		if (result.errors) {
+			result.errors.forEach(e => console.error(e.toString()));
+			return Promise.reject(result.errors);
+		}
 
-// 		const posts = result.data.allMarkdownRemark.edges;
+		const posts = result.data.allMarkdownRemark.edges;
 
-// 		posts.forEach(edge => {
-// 			const id = edge.node.id;
-// 			const index = edge.node.frontmatter.index;
-// 			if (edge.node.frontmatter.templateKey == "single-project" || edge.node.frontmatter.templateKey == "blog-post") {
-// 				createPage({
-// 					path: edge.node.fields.slug,
-// 					component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.jsx`),
-// 					// additional data can be passed via context
-// 					context: {
-// 						id,
-// 						index
-// 					}
-// 				});
-// 			}
-// 		});
-// 	});
-// };
+		posts.forEach(edge => {
+			const id = edge.node.id;
+			const index = edge.node.frontmatter.index;
+			if (edge.node.frontmatter.templateKey == "single-project" || edge.node.frontmatter.templateKey == "blog-post") {
+				createPage({
+					path: edge.node.fields.slug,
+					component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.jsx`),
+					// additional data can be passed via context
+					context: {
+						id,
+						index
+					}
+				});
+			}
+		});
+	});
+};
 
 exports.onCreatePage = ({ page, actions }) => {
 	const { createPage } = actions;
