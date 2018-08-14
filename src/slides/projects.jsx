@@ -1,21 +1,9 @@
 import React from "react";
 import Page from "../components/Page";
-import { IoIosArrowRight, IoIosLightbulbOutline, IoIosCheckmarkOutline, IoIosSnowy } from "react-icons/lib/io";
 
 import "../styles/projects.scss";
 
-const FeatureIcon = ({ icon, className }) => {
-	switch (icon) {
-		case "snow":
-			return <IoIosSnowy className={className} />;
-		case "light":
-			return <IoIosLightbulbOutline className={className} />;
-		case "check":
-			return <IoIosCheckmarkOutline className={className} />;
-		default:
-			return <IoIosCheckmarkOutline className={className} />;
-	}
-};
+const FeatureIcon = () => {};
 
 const ProjectCard = ({ title, type, image, features }) => (
 	<div className="project-card">
@@ -23,14 +11,7 @@ const ProjectCard = ({ title, type, image, features }) => (
 		<div className="project-card--bottom">
 			<h4 className="project-card--title">{title}</h4>
 			<span className="project-card--type">{type}</span>
-			<div className="project-card--features">
-				{features.map((feature, index) => (
-					<span key={`${feature.title}-${index}`} className="project-card--feature-title">
-						<FeatureIcon className="project-card--feature-icon" icon={feature.icon} />
-						<span>{feature.title}</span>
-					</span>
-				))}
-			</div>
+			<div className="project-card--features">{features.map(feature => <span className="project-card--feature-title">{feature.title}</span>)}</div>
 		</div>
 	</div>
 );
@@ -41,10 +22,6 @@ const Projects = ({ index, image, caption, title, projects = [{ id: 1 }], totalC
 			{projects.length
 				? projects.map(project => <ProjectCard key={project.node.id} features={project.node.frontmatter.features} image={project.node.frontmatter.image} type={project.node.frontmatter.type} title={project.node.frontmatter.title} />)
 				: ""}
-			<div className="more-projects">
-				<h3 className="more-projects--title">MORE&nbsp;PROJECTS</h3>
-				<IoIosArrowRight className="more-projects--arrow" />
-			</div>
 		</div>
 	</Page>
 );

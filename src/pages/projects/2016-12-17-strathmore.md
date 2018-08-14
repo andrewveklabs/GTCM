@@ -7,7 +7,7 @@ image: /img/flavor_wheel.jpg
 type: Land Development
 features:
   - {title: light, icon: light}
-  - {title: Feature, icon: check}
+  - {title: light, icon: light}
 ---
 
 ![flavor wheel](/img/flavor_wheel.jpg)

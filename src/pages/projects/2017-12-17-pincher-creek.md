@@ -6,7 +6,7 @@ description: This is a test project description
 image: /img/flavor_wheel.jpg
 type: Institutional
 features:
-  - {title: Feature, icon: check}
+  - {title: light, icon: light}
   - {title: light, icon: light}
 ---
 

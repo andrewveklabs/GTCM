@@ -1,11 +1,12 @@
 import React from "react";
 import Page from "../components/Page";
+import PageNavigator from "../components/PageNavigator";
 import Button from "../components/Button";
 import { IoIosArrowThinRight } from "react-icons/lib/io";
 import { HTMLContent } from "../components/Content";
 
-const WhoWeAre = ({ image, content, caption, title }) => (
-	<Page title={title} className="section section--gradient-gray">
+const WhoWeAre = ({ index, image, content, caption, title, totalCount }) => (
+	<Page title={title} index={index} totalCount={totalCount} className="section section--gradient-gray">
 		<div className="double-flex">
 			<div className="left-side">
 				<span className="since-date">Since 2002</span>
@@ -24,6 +25,7 @@ const WhoWeAre = ({ image, content, caption, title }) => (
 				</div>
 			</div>
 		</div>
+		<PageNavigator prev={{ title: "Home", url: "/" }} next={{ title: "Projects", url: "/projects" }} />
 	</Page>
 );
 
