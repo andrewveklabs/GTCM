@@ -3,15 +3,6 @@
 
 .contact-slide {
 	color: white;
-
-	.navbar {
-		h2,
-		h5 a,
-		h5 span {
-			color: white;
-		}
-	}
-
 	.double-flex {
 		display: flex;
 		align-items: center;
@@ -37,8 +28,6 @@
 			.contact--social-icons {
 				align-self: flex-end;
 				margin-top: 2rem;
-				color: white;
-				fill: white;
 
 				.social-icon {
 					background: white;

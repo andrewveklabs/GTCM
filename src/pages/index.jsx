@@ -5,7 +5,6 @@ import { bindKeyboard } from "react-swipeable-views-utils";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SwipeableRoutes from "react-swipeable-routes";
 import Helmet from "react-helmet";
-import html2canvas from "html2canvas";
 
 import IndexSlide from "../slides/index";
 import WhoWeAre from "../slides/whoweare";
@@ -13,7 +12,6 @@ import Projects from "../slides/projects";
 import Team from "../slides/team";
 import Contact from "../slides/contact";
 import News from "../slides/news";
-import Explore from "../slides/explore";
 
 import bg from "../../static/img/home-hero.jpg";
 import "normalize.css";
@@ -32,38 +30,11 @@ class IndexPage extends Component {
 			prevTitle: "",
 			nextTitle: "Who We Are",
 			title: "Home",
-			explore: false,
-			screenshotsLoaded: false,
-			screenshots: []
+			explore: false
 		};
 	}
 
-	componentDidMount() {
-		setTimeout(() => {
-			let slides = document.querySelectorAll(".react-swipeable-view-container > div > div");
-			let screenshots = [];
-			slides.forEach(async slide => {
-				try {
-					await html2canvas(slide, {
-						profile: true,
-						ignoreElements: element => {
-							return element.className === "ignored";
-						}
-					}).then(canvas => {
-						var ctx = canvas.getContext("2d");
-						ctx.webkitImageSmoothingEnabled = false;
-						ctx.mozImageSmoothingEnabled = false;
-						ctx.imageSmoothingEnabled = false;
-						screenshots.push(canvas.toDataURL("image/jpeg"));
-						this.setState({ screenshots: screenshots });
-					});
-					if (screenshots.length === 6) this.setState({ screenshotsLoaded: true });
-				} catch (err) {
-					console.log(err);
-				}
-			});
-		}, 500);
-	}
+	componentDidMount() {}
 
 	slideDidSwitch = index => {
 		this.setState({
@@ -88,7 +59,7 @@ class IndexPage extends Component {
 	};
 
 	explore = () => {
-		this.setState(prevState => ({ explore: !prevState.explore }));
+		this.setState({ explore: true });
 	};
 
 	render() {
@@ -100,89 +71,65 @@ class IndexPage extends Component {
 				<Helmet title={`GTCM | ${this.state.title}`} />
 				{typeof window !== "undefined" ? (
 					<Router>
-						{this.state.screenshotsLoaded && this.state.explore ? (
-							""
-						) : (
-							<Fragment>
-								<BindKeyboardSwipeableRoutes
-									resistance
-									enableMouseEvents
-									ignoreNativeScroll
-									index={this.state.index}
-									onChangeIndex={this.slideDidSwitch}
-									style={{ opacity: this.state.explore ? 0 : 1 }}
-									slideStyle={{ position: "relative", transform: this.state.explore ? "scale(0.5" : "" }}>
-									<Route exact path="/">
-										<IndexSlide
-											author={data.NewsWidget.edges[0].node.frontmatter.author}
-											slug={data.NewsWidget.edges[0].node.fields.slug}
-											title={data.NewsWidget.edges[0].node.frontmatter.title}
-											date={data.NewsWidget.edges[0].node.frontmatter.date}
-											light={this.state.light}
-											bg={bg}
-											onExplore={this.explore}
-										/>
-									</Route>
-									<Route path="/whoweare">
-										<WhoWeAre
-											title={data.WhoWeAre.edges[0].node.frontmatter.title}
-											image={data.WhoWeAre.edges[0].node.frontmatter.image}
-											caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
-											content={data.WhoWeAre.edges[0].node.html}
-											onExplore={this.explore}
-										/>
-									</Route>
-									<Route path="/projects">
-										<Projects
-											title={data.Projects.edges[0].node.frontmatter.title}
-											image={data.WhoWeAre.edges[0].node.frontmatter.image}
-											caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
-											projects={data.SingleProject.edges}
-											onExplore={this.explore}
-										/>
-									</Route>
-									<Route path="/team">
-										<Team
-											title={data.Team.edges[0].node.frontmatter.title}
-											members={data.Team.edges[0].node.frontmatter.members}
-											onExplore={this.explore}
-										/>
-									</Route>
-									<Route path="/contact">
-										<Contact
-											title={data.Contact.edges[0].node.frontmatter.title}
-											tagline={data.Contact.edges[0].node.frontmatter.tagline}
-											light={this.state.light}
-											blueLine
-											onExplore={this.explore}
-										/>
-									</Route>
-									<Route path="/news">
-										<News title={data.News.edges[0].node.frontmatter.title} posts={data.Posts.edges} explore={this.explore} />
-									</Route>
-								</BindKeyboardSwipeableRoutes>
-							</Fragment>
-						)}
+						<Fragment>
+							<BindKeyboardSwipeableRoutes
+								resistance
+								enableMouseEvents
+								ignoreNativeScroll
+								index={this.state.index}
+								onChangeIndex={this.slideDidSwitch}
+								slideStyle={{ position: "relative", transform: this.state.explore ? "scale(0.5" : "" }}>
+								<Route exact path="/">
+									<IndexSlide
+										author={data.NewsWidget.edges[0].node.frontmatter.author}
+										slug={data.NewsWidget.edges[0].node.fields.slug}
+										title={data.NewsWidget.edges[0].node.frontmatter.title}
+										date={data.NewsWidget.edges[0].node.frontmatter.date}
+										light={this.state.light}
+										bg={bg}
+									/>
+								</Route>
+								<Route path="/whoweare">
+									<WhoWeAre
+										title={data.WhoWeAre.edges[0].node.frontmatter.title}
+										image={data.WhoWeAre.edges[0].node.frontmatter.image}
+										caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
+										content={data.WhoWeAre.edges[0].node.html}
+									/>
+								</Route>
+								<Route path="/projects">
+									<Projects
+										title={data.Projects.edges[0].node.frontmatter.title}
+										image={data.WhoWeAre.edges[0].node.frontmatter.image}
+										caption={data.WhoWeAre.edges[0].node.frontmatter.caption}
+										projects={data.SingleProject.edges}
+									/>
+								</Route>
+								<Route path="/team">
+									<Team title={data.Team.edges[0].node.frontmatter.title} members={data.Team.edges[0].node.frontmatter.members} />
+								</Route>
+								<Route path="/contact">
+									<Contact
+										title={data.Contact.edges[0].node.frontmatter.title}
+										tagline={data.Contact.edges[0].node.frontmatter.tagline}
+										light={this.state.light}
+										blueLine
+									/>
+								</Route>
+								<Route path="/news">
+									<News title={data.News.edges[0].node.frontmatter.title} posts={data.Posts.edges} />
+								</Route>
+							</BindKeyboardSwipeableRoutes>
+							<Route path="/explore" render={this.explore} />
+						</Fragment>
 					</Router>
 				) : (
 					""
 				)}
-				{this.state.screenshotsLoaded && this.state.explore ? (
-					<Explore index={this.state.index} pageInfo={pages} images={this.state.screenshots} />
-				) : (
-					""
-				)}
-				{this.state.screenshotsLoaded && this.state.explore ? (
-					""
-				) : (
-					<div className={`page-navigator ${this.state.light ? "light" : ""}`}>
-						{this.state.prevTitle !== "" ? <NavigatorArrow onClick={this.backwardSlide} text={this.state.prevTitle} left /> : ""}
-						{this.state.nextTitle !== "" ? <NavigatorArrow onClick={this.forwardSlide} text={this.state.nextTitle} right /> : ""}
-					</div>
-				)}
-				<button onClick={this.explore} style={{ position: "absolute", left: 0, top: 0 }}>
-					Explore
-				</button>
+				<div className={`page-navigator ${this.state.light ? "light" : ""}`}>
+					{this.state.prevTitle !== "" ? <NavigatorArrow onClick={this.backwardSlide} text={this.state.prevTitle} left /> : ""}
+					{this.state.nextTitle !== "" ? <NavigatorArrow onClick={this.forwardSlide} text={this.state.nextTitle} right /> : ""}
+				</div>
 				<Indicator light={this.state.light} index={this.state.index + 1} totalCount={totalCount + 1} />
 			</Fragment>
 		);

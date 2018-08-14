@@ -13,7 +13,7 @@ const splitText = text => {
 
 const LineThrough = ({ children }) => {
 	const html = splitText(children);
-	return <strike className="line-through ignored">{html.map(span => <span key={span}>{span}</span>)}</strike>;
+	return <strike className="line-through">{html.map(span => <span key={span}>{span}</span>)}</strike>;
 };
 
 export default LineThrough;

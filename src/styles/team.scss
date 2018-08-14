@@ -7,14 +7,14 @@
 	grid-column-gap: $col;
 	justify-content: center;
 	align-items: center;
-	margin-top: $col;
+	height: 80%;
 
 	.team-member {
 		cursor: pointer;
 
 		&:hover .team-member--info {
 			box-shadow: -5px 0 10px rgba(0, 0, 0, 0.12);
-			transform: translateY(-10%);
+			transform: translateX($col / 2) translateY(-80%);
 		}
 
 		.team-member--image {
@@ -24,13 +24,9 @@
 		.team-member--info {
 			background-color: white;
 			padding: $col / 4;
-			margin-left: $col / 2;
-			margin-top: -$col;
-			box-sizing: border-box;
-			width: 100%;
+			transform: translateX($col / 2) translateY(-75%);
 			transition: 225ms $bezier;
 			z-index: 999;
-			position: relative;
 
 			.team-member--name {
 				margin: 0;
@@ -39,29 +35,6 @@
 			.team-member--title {
 				color: $blue;
 			}
-		}
-	}
-}
-
-.team-careers {
-	position: absolute;
-	bottom: $col;
-	right: $col;
-
-	.team-careers--button {
-		padding: $col / 8 $col / 2;
-		box-sizing: border-box;
-		display: block;
-		color: black;
-		@include rem(font-size, 28px);
-		font-weight: bold;
-		background-image: $yellowGradient;
-		transition: 225ms $bezier;
-
-		&:hover {
-			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-			transform: translateY(-10%);
-			opacity: 1;
 		}
 	}
 }

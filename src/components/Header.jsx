@@ -24,17 +24,13 @@ const StyledNav = styled.nav`
 	}
 `;
 
-const Header = ({ color = "black", title, line = true, blueLine, onExplore }) => (
+const Header = ({ color = "black", title, line = true, blueLine }) => (
 	<StyledNav className="navbar" color={color}>
-		{title ? (
-			<h2 className="page-title ignored">
-				{line ? <strike className={`line-through page-header ${blueLine ? "blue-line" : ""}`}>{title}</strike> : <Fragment>{title}</Fragment>}
-			</h2>
-		) : (
-			""
-		)}
+		{title ? <h2 className="page-title">{line ? <strike className={`line-through page-header ${blueLine ? "blue-line" : ""}`}>{title}</strike> : <Fragment>{title}</Fragment>}</h2> : ""}
 		<h5>
-			<span onClick={onExplore}>Explore</span>
+			<Link to="explore" exact>
+				Explore
+			</Link>
 			<Link to="contact">Contact</Link>
 			<span className="navbar-divider">|</span>
 			<a href="tel:+1 403 256 3668">+1 403 256 3668</a>
