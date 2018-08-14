@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Link from "gatsby-link";
 import styled from "styled-components";
 import styleguide from "./styleguide";
+import { IoIosHelp } from "react-icons/lib/io";
 
 const StyledNav = styled.nav`
 	display: flex;
@@ -34,6 +35,7 @@ const Header = ({ color = "black", title, line = true, blueLine }) => (
 			<Link to="contact">Contact</Link>
 			<span className="navbar-divider">|</span>
 			<a href="tel:+1 403 256 3668">+1 403 256 3668</a>
+			{/* <IoIosHelp color={color} /> */}
 		</h5>
 	</StyledNav>
 );
