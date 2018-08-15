@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import Link from "gatsby-link";
 import styleguide from "./styleguide";
@@ -20,12 +20,36 @@ const ButtonLink = styled(Link)`
 	}
 `;
 
-const Button = ({ children, text, to }) => {
+const NoButton = styled.div`
+	color: ${styleguide.blue};
+	text-transform: uppercase;
+	font-weight: 500;
+	float: right;
+	margin-top: 0.2em;
+	padding-right: ${styleguide.col / 2}vw;
+	cursor: pointer;
+
+	&:hover {
+		opacity: 1;
+		text-decoration: underline;
+	}
+`;
+
+const Button = ({ children, text, to, noLink, onClick }) => {
 	return (
-		<ButtonLink to={to}>
-			{children}
-			<IoIosArrowRight style={{ marginTop: "-0.2em" }} />
-		</ButtonLink>
+		<Fragment>
+			{noLink ? (
+				<NoButton onClick={onClick}>
+					{children}
+					<IoIosArrowRight style={{ marginTop: "-0.2em" }} />
+				</NoButton>
+			) : (
+				<ButtonLink to={to}>
+					{children}
+					<IoIosArrowRight style={{ marginTop: "-0.2em" }} />
+				</ButtonLink>
+			)}
+		</Fragment>
 	);
 };
 

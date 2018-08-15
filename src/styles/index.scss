@@ -1,0 +1,10 @@
+@import "mixins";
+@import "variables";
+
+#front-page {
+	.logo {
+		height: $col;
+		margin-left: $col;
+		margin-top: -$col;
+	}
+}

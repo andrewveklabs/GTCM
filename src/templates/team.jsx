@@ -2,6 +2,8 @@ import React from "react";
 import Page from "../components/Page";
 import PageNavigator from "../components/PageNavigator";
 import "../styles/team.scss";
+import posed from "react-pose";
+import styleguide from "../components/styleguide";
 
 const Team = ({ data, location }) => {
 	const { markdownRemark: team } = data;
@@ -13,13 +15,20 @@ const Team = ({ data, location }) => {
 			title="Team"
 			className="section section--team section--gradient-gray">
 			<div className="team-members">
-				{team.frontmatter.members.map(member => (
+				{team.frontmatter.members.map((member, i) => (
 					<div key={member.name} className="team-member">
-						<img className="team-member--image" src={member.image} alt={member.name} />
-						<div className="team-member--info">
+						<TeamImage
+							i={i}
+							pose="enter"
+							initialPose="exit"
+							className="team-member--image"
+							src={member.image}
+							alt={member.name}
+						/>
+						<TeamInfo i={i} pose="enter" initialPose="exit" className="team-member--info">
 							<h3 className="team-member--name">{member.name}</h3>
 							<span className="team-member--title">{member.title}</span>
-						</div>
+						</TeamInfo>
 					</div>
 				))}
 			</div>
@@ -27,6 +36,38 @@ const Team = ({ data, location }) => {
 		</Page>
 	);
 };
+
+const TeamImage = posed.img({
+	enter: {
+		y: 0,
+		opacity: 1,
+		delay: ({ i }) => i * 150 + 100,
+		transition: {
+			default: { ease: styleguide.bezierArray, duration: 1000 }
+		}
+	},
+	exit: {
+		y: "10%",
+		opacity: 0
+	}
+});
+
+const TeamInfo = posed.div({
+	enter: {
+		y: 0,
+		width: "80%",
+		opacity: 1,
+		delay: ({ i }) => i * 150 + 300,
+		transition: {
+			default: { ease: styleguide.bezierArray, duration: 1000 }
+		}
+	},
+	exit: {
+		y: "10%",
+		width: "10%",
+		opacity: 0
+	}
+});
 
 export default Team;
 

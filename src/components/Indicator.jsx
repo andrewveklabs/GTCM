@@ -21,7 +21,7 @@ const TotalCount = posed.h5({
 	enter: {
 		opacity: 0.65,
 		y: 0,
-		delay: 950,
+		delay: 650,
 		transition: {
 			default: { ease: styleguide.bezierArray, duration: 1300 }
 		}
@@ -36,7 +36,7 @@ const CurrentCount = posed.h1({
 	enter: {
 		opacity: 1,
 		y: 0,
-		delay: 650,
+		delay: 350,
 		transition: {
 			default: { ease: styleguide.bezierArray, duration: 1000 }
 		}

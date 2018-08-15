@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { HTMLContent } from "../components/Content";
 import Page from "../components/Page";
 import PageNavigator from "../components/PageNavigator";
@@ -24,8 +25,9 @@ const FeatureIcon = ({ icon, className }) => {
 	}
 };
 
-const ProjectCard = ({ title, type, image, features }) => (
-	<ProjectCardContainer className="project-card">
+const ProjectCard = ({ title, type, image, features, hostRef, transition, ongoing, onClick }) => (
+	<div onClick={onClick} className="project-card" style={{ transition }} ref={hostRef}>
+		{ongoing && <Badge>{console.log(ongoing)}ongoing</Badge>}
 		<img className="project-card--image" src={image} alt={title} />
 		<div className="project-card--bottom">
 			<h4 className="project-card--title">{title}</h4>
@@ -39,20 +41,19 @@ const ProjectCard = ({ title, type, image, features }) => (
 				))}
 			</div>
 		</div>
-	</ProjectCardContainer>
+	</div>
 );
 
 class Projects extends Component {
 	state = {
-		modalIsOpen: false
+		modalIsOpen: false,
+		transition: "",
+		sidetransition: "",
+		project: {}
 	};
 
-	openModal = () => {
-		this.setState({ modalIsOpen: true });
-	};
-
-	closeModal = () => {
-		this.setState({ modalIsOpen: false });
+	openModal = project => {
+		this.setState({ project, modalIsOpen: true });
 	};
 
 	render() {
@@ -61,14 +62,24 @@ class Projects extends Component {
 			<Page
 				location={this.props.location}
 				totalCount={totalPages.totalCount}
+				title="Projects"
+				line={false}
 				index={markdownRemark.frontmatter.index}
 				className="section section--gradient-yellow">
 				<div className="project-grid">
 					<PoseGroup animateOnMount>
 						{projects.edges.length &&
-							projects.edges.map(project => (
-								<ProjectCard
-									onClick={this.openModal}
+							projects.edges.map((project, index) => (
+								<ProjectCardContainer
+									onPoseComplete={() => {
+										setTimeout(() => {
+											this.setState({ transition: "225ms" });
+										}, 1000);
+									}}
+									ongoing={project.node.frontmatter.ongoing}
+									transition={this.state.transition}
+									index={index}
+									onClick={() => this.openModal(project.node.frontmatter)}
 									key={project.node.id}
 									features={project.node.frontmatter.features}
 									image={project.node.frontmatter.image}
@@ -77,32 +88,72 @@ class Projects extends Component {
 								/>
 							))}
 					</PoseGroup>
-					<div className="more-projects">
+					<MoreProjects
+						onPoseComplete={() => {
+							setTimeout(() => {
+								this.setState({ sidetransition: "225ms" });
+							}, 1000);
+						}}
+						style={{ transition: this.state.sidetransition }}
+						pose="enter"
+						initialPose="exit"
+						className="more-projects">
 						<h3 className="more-projects--title">MORE&nbsp;PROJECTS</h3>
 						<IoIosArrowRight className="more-projects--arrow" />
-					</div>
+					</MoreProjects>
 				</div>
 				<PageNavigator prev={{ title: "Who We Are", url: "/whoweare" }} next={{ title: "Team", url: "/team" }} />
-				<Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
-					<ProjectModal />
+				<Modal
+					overlayClassName="Overlay Project-Overlay"
+					className="Project-Modal"
+					isOpen={this.state.modalIsOpen}
+					onRequestClose={() => this.setState({ modalIsOpen: false })}>
+					<ProjectModal {...this.state.project} />
 				</Modal>
 			</Page>
 		);
 	}
 }
 
-const ProjectCardContainer = posed.div({
+const Badge = styled.div`
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 5px;
+	text-transform: uppercase;
+	padding: 0 0.25rem;
+	font-size: 14px;
+	color: white;
+	position: absolute;
+	z-index: 99;
+	top: calc(${(100 / 24) * 2}vw - 30px);
+	right: 10px;
+`;
+
+const MoreProjects = posed.div({
 	enter: {
-		y: 0,
+		x: 0,
 		opacity: 1,
-		delay: 1000,
+		delay: 750,
 		transition: {
 			default: { ease: styleguide.bezierArray, duration: 1000 }
 		}
 	},
 	exit: {
-		y: "-10%",
+		x: "15%",
 		opacity: 0
+	}
+});
+
+const ProjectCardContainer = posed(ProjectCard)({
+	enter: {
+		scale: 1,
+		opacity: 1,
+		delay: ({ index }) => index * 175 + 200,
+		transition: {
+			default: { type: "spring", damping: 25, duration: 250 }
+		}
+	},
+	exit: {
+		scale: 0.9
 	}
 });
 
@@ -120,14 +171,21 @@ export const ProjectPageQuery = graphql`
 		totalPages: allMarkdownRemark(filter: { frontmatter: { level: { eq: "top" } } }) {
 			totalCount
 		}
-		allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "single-project" } } }) {
+		allMarkdownRemark(
+			sort: { order: DESC, fields: frontmatter___date }
+			filter: { frontmatter: { templateKey: { eq: "single-project" } } }
+		) {
 			edges {
 				node {
 					id
+					html
 					frontmatter {
 						title
+						ongoing
 						image
 						type
+						description
+						year: date(formatString: "YYYY")
 						features {
 							title
 							icon

@@ -3,7 +3,7 @@
 
 .project-grid {
 	display: grid;
-	grid-auto-flow: column;
+	grid-auto-flow: row;
 	grid-template-columns: $col * 5.5 $col * 5.5 $col;
 	grid-template-rows: 1fr 1fr;
 	grid-column-gap: $col / 2;
@@ -17,7 +17,8 @@
 
 .project-card {
 	background: white;
-	transition: 300ms $bezier;
+	opacity: 0;
+	position: relative;
 	cursor: pointer;
 	border-radius: $borderRadius;
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
@@ -78,7 +79,6 @@
 	grid-column: 3 / 3;
 	width: 100%;
 	position: relative;
-	transition: 300ms $bezier;
 	cursor: pointer;
 	border-radius: $borderRadius;
 	box-shadow: -1px 0 6px rgba(0, 0, 0, 0.12);

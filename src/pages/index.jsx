@@ -4,7 +4,8 @@ import NewsWidget from "../components/NewsWidget";
 import PageNavigator from "../components/PageNavigator";
 import Page from "../components/Page";
 
-import bg from "../../static/img/home-hero.jpg";
+import bg from "../../static/img/news-mock.jpg";
+import fullLogo from "../img/Full.svg";
 import "../styles/index.scss";
 
 const IndexPage = ({ data, transition, location }) => {
@@ -21,7 +22,8 @@ const IndexPage = ({ data, transition, location }) => {
 			light
 			id="front-page"
 			className="top-level-page page"
-			style={{ backgroundImage: `url(${bg})` }}>
+			style={{ backgroundImage: `url(${bg})`, backgroundSize: "cover" }}>
+			<img src={fullLogo} alt="GTCM logo" className="logo" />
 			<PageNavigator light next={{ title: "Who We Are", url: "/whoweare" }} />
 			<NewsWidget slug={slug} title={title} date={date} author="GTCM" />
 		</Page>

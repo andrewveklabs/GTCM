@@ -1,28 +1,31 @@
-import React from "react";
-import Link from "gatsby-link";
+import React, { PureComponent } from "react";
+import { Link, navigateTo } from "gatsby";
 import { IoIosArrowLeft, IoIosArrowRight } from "react-icons/lib/io";
 
-const NavigatorArrow = ({ left, right, text, url }) => {
-	if (left) {
-		return (
-			<Link to={url} className="page-navigator--part page-navigator--left">
-				<span className="page-navigator--icon">
-					<IoIosArrowLeft />
-				</span>
-				<span className="page-navigator--text">{text}</span>
-			</Link>
-		);
-	} else if (right) {
-		return (
-			<Link to={url} className="page-navigator--part page-navigator--right">
-				<span className="page-navigator--text">{text}</span>
-				<span className="page-navigator--icon">
-					<IoIosArrowRight />
-				</span>
-			</Link>
-		);
+class NavigatorArrow extends PureComponent {
+	render() {
+		const { left, right, text, url } = this.props;
+		if (left) {
+			return (
+				<Link to={url} className="page-navigator--part page-navigator--left">
+					<span className="page-navigator--icon">
+						<IoIosArrowLeft />
+					</span>
+					<span className="page-navigator--text">{text}</span>
+				</Link>
+			);
+		} else if (right) {
+			return (
+				<Link to={url} className="page-navigator--part page-navigator--right">
+					<span className="page-navigator--text">{text}</span>
+					<span className="page-navigator--icon">
+						<IoIosArrowRight />
+					</span>
+				</Link>
+			);
+		}
 	}
-};
+}
 
 const PageNavigator = ({ next, prev, light }) => {
 	return (
