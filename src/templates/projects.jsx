@@ -1,10 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { HTMLContent } from "../components/Content";
 import Page from "../components/Page";
 import PageNavigator from "../components/PageNavigator";
+import ProjectModal from "../components/ProjectModal";
+import Modal from "react-modal";
+import Img from "gatsby-image";
 import { IoIosArrowRight, IoIosLightbulbOutline, IoIosCheckmarkOutline, IoIosSnowy } from "react-icons/lib/io";
-
+import styleguide from "../components/styleguide";
+import posed, { PoseGroup } from "react-pose";
 import "../styles/projects.scss";
 
 const FeatureIcon = ({ icon, className }) => {
@@ -21,7 +25,7 @@ const FeatureIcon = ({ icon, className }) => {
 };
 
 const ProjectCard = ({ title, type, image, features }) => (
-	<div className="project-card">
+	<ProjectCardContainer className="project-card">
 		<img className="project-card--image" src={image} alt={title} />
 		<div className="project-card--bottom">
 			<h4 className="project-card--title">{title}</h4>
@@ -35,36 +39,72 @@ const ProjectCard = ({ title, type, image, features }) => (
 				))}
 			</div>
 		</div>
-	</div>
+	</ProjectCardContainer>
 );
 
-const Projects = ({ data }) => {
-	const { allMarkdownRemark: projects } = data;
-	return (
-		<Page
-			totalCount={data.totalPages.totalCount}
-			index={data.markdownRemark.frontmatter.index}
-			className="section section--gradient-yellow">
-			<div className="project-grid">
-				{projects.edges.length &&
-					projects.edges.map(project => (
-						<ProjectCard
-							key={project.node.id}
-							features={project.node.frontmatter.features}
-							image={project.node.frontmatter.image}
-							type={project.node.frontmatter.type}
-							title={project.node.frontmatter.title}
-						/>
-					))}
-				<div className="more-projects">
-					<h3 className="more-projects--title">MORE&nbsp;PROJECTS</h3>
-					<IoIosArrowRight className="more-projects--arrow" />
+class Projects extends Component {
+	state = {
+		modalIsOpen: false
+	};
+
+	openModal = () => {
+		this.setState({ modalIsOpen: true });
+	};
+
+	closeModal = () => {
+		this.setState({ modalIsOpen: false });
+	};
+
+	render() {
+		const { allMarkdownRemark: projects, totalPages, markdownRemark } = this.props.data;
+		return (
+			<Page
+				location={this.props.location}
+				totalCount={totalPages.totalCount}
+				index={markdownRemark.frontmatter.index}
+				className="section section--gradient-yellow">
+				<div className="project-grid">
+					<PoseGroup animateOnMount>
+						{projects.edges.length &&
+							projects.edges.map(project => (
+								<ProjectCard
+									onClick={this.openModal}
+									key={project.node.id}
+									features={project.node.frontmatter.features}
+									image={project.node.frontmatter.image}
+									type={project.node.frontmatter.type}
+									title={project.node.frontmatter.title}
+								/>
+							))}
+					</PoseGroup>
+					<div className="more-projects">
+						<h3 className="more-projects--title">MORE&nbsp;PROJECTS</h3>
+						<IoIosArrowRight className="more-projects--arrow" />
+					</div>
 				</div>
-			</div>
-			<PageNavigator prev={{ title: "Who We Are", url: "/whoweare" }} next={{ title: "Team", url: "/team" }} />
-		</Page>
-	);
-};
+				<PageNavigator prev={{ title: "Who We Are", url: "/whoweare" }} next={{ title: "Team", url: "/team" }} />
+				<Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
+					<ProjectModal />
+				</Modal>
+			</Page>
+		);
+	}
+}
+
+const ProjectCardContainer = posed.div({
+	enter: {
+		y: 0,
+		opacity: 1,
+		delay: 1000,
+		transition: {
+			default: { ease: styleguide.bezierArray, duration: 1000 }
+		}
+	},
+	exit: {
+		y: "-10%",
+		opacity: 0
+	}
+});
 
 export default Projects;
 

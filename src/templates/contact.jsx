@@ -5,13 +5,14 @@ import { HTMLContent } from "../components/Content";
 import PageNavigator from "../components/PageNavigator";
 import { IoSocialTwitter, IoSocialFacebook, IoSocialGoogleplus } from "react-icons/lib/io";
 
-const Contact = ({ data }) => (
+const Contact = ({ data, location }) => (
 	<Page
 		light={true}
 		blueLine={true}
 		title="Contact"
 		index={data.markdownRemark.frontmatter.index}
 		totalCount={data.totalPages.totalCount}
+		location={location}
 		className="section contact-slide section--gradient-black">
 		<div className="double-flex">
 			<div className="left-side">

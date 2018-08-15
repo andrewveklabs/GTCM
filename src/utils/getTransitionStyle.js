@@ -1,21 +1,21 @@
 import styleguide from "../components/styleguide";
 
-const getTransitionStyles = (timeout, index = 1, nextIndex) => {
+const getTransitionStyles = timeout => {
 	return {
 		entering: {
-			transform: "translateX(100%)"
+			opacity: 0
 		},
 		entered: {
 			transition: `${timeout}ms cubic-bezier(${styleguide.bezier})`,
-			transform: "translateX(0)"
+			opacity: 1
 		},
 		exiting: {
 			transition: `${timeout}ms cubic-bezier(${styleguide.bezier})`,
-			transform: "translateX(-100%)"
+			opacity: 0
 		}
 	};
 };
 
-const getTransitionStyle = ({ timeout, status, index, nextIndex }) => getTransitionStyles(timeout, index, nextIndex)[status];
+const getTransitionStyle = ({ timeout, status }) => getTransitionStyles(timeout)[status];
 
 export default getTransitionStyle;

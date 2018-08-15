@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import pose from "popmotion-pose";
 import NewsWidget from "../components/NewsWidget";
 import PageNavigator from "../components/PageNavigator";
 import Page from "../components/Page";
@@ -7,13 +7,21 @@ import Page from "../components/Page";
 import bg from "../../static/img/home-hero.jpg";
 import "../styles/index.scss";
 
-const IndexPage = ({ data, transition }) => {
+const IndexPage = ({ data, transition, location }) => {
 	const { title, date } = data.allMarkdownRemark.edges[0].node.frontmatter;
 	const { slug } = data.allMarkdownRemark.edges[0].node.fields;
 	const { totalCount } = data.totalPages;
 
 	return (
-		<Page transition={transition} index={1} totalCount={totalCount} light id="front-page" className="top-level-page page" style={{ backgroundImage: `url(${bg})` }}>
+		<Page
+			location={location}
+			transition={transition}
+			index={1}
+			totalCount={totalCount}
+			light
+			id="front-page"
+			className="top-level-page page"
+			style={{ backgroundImage: `url(${bg})` }}>
 			<PageNavigator light next={{ title: "Who We Are", url: "/whoweare" }} />
 			<NewsWidget slug={slug} title={title} date={date} author="GTCM" />
 		</Page>
@@ -22,11 +30,13 @@ const IndexPage = ({ data, transition }) => {
 
 export default IndexPage;
 
-IndexPage.propTypes = {};
-
 export const pageQuery = graphql`
 	query IndexQuery {
-		allMarkdownRemark(limit: 1, sort: { order: DESC, fields: [frontmatter___date] }, filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
+		allMarkdownRemark(
+			limit: 1
+			sort: { order: DESC, fields: [frontmatter___date] }
+			filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+		) {
 			edges {
 				node {
 					id

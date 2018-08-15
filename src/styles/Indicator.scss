@@ -1,6 +1,15 @@
 @import "variables";
 @import "mixins";
 
+@keyframes grow {
+	from {
+		width: 0;
+	}
+	to {
+		width: 85%;
+	}
+}
+
 .indicator {
 	position: absolute;
 	bottom: $col;
@@ -13,7 +22,7 @@
 		color: white;
 
 		> *::after {
-			background-color: white;
+			background-color: white !important;
 		}
 	}
 
@@ -24,8 +33,12 @@
 		margin-right: 0.5rem;
 		&::after {
 			content: "";
+			background-color: black;
+			animation: grow 400ms $bezier;
+			animation-delay: 1100ms;
+			animation-fill-mode: forwards;
 			display: inline-block;
-			width: 85%;
+			width: 0;
 			margin-top: 3rem;
 			margin-left: 3.5%;
 			height: 5px;
@@ -40,8 +53,12 @@
 
 		&::after {
 			content: "";
+			animation: grow 400ms $bezier;
+			animation-delay: 1.5s;
+			animation-fill-mode: forwards;
+			background-color: black;
 			display: inline-block;
-			width: 85%;
+			width: 0;
 			margin-top: 3.75rem;
 			margin-left: 15%;
 			height: 5px;

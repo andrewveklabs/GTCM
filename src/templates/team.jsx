@@ -3,10 +3,11 @@ import Page from "../components/Page";
 import PageNavigator from "../components/PageNavigator";
 import "../styles/team.scss";
 
-const Team = ({ data }) => {
+const Team = ({ data, location }) => {
 	const { markdownRemark: team } = data;
 	return (
 		<Page
+			location={location}
 			index={team.frontmatter.index}
 			totalCount={data.totalPages.totalCount}
 			title="Team"

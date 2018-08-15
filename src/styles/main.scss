@@ -9,6 +9,7 @@ body {
 	font-family: "Roboto";
 	font-size: 100%;
 	line-height: 1.6667;
+	background: $blue;
 	transition-timing-function: $bezier;
 }
 
@@ -22,30 +23,30 @@ a {
 }
 
 h1 {
-	@include rem(font-size, 64px);
+	@include rem(font-size, 58px);
 	line-height: 1.445;
 	font-weight: 400;
 }
 
 h2 {
-	@include rem(font-size, 48px);
-}
-
-h3 {
 	@include rem(font-size, 42px);
 }
 
+h3 {
+	@include rem(font-size, 38px);
+}
+
 h4 {
-	@include rem(font-size, 36px);
+	@include rem(font-size, 32px);
 }
 
 h5 {
-	@include rem(font-size, 24px);
+	@include rem(font-size, 20px);
 	font-weight: 400;
 }
 
 h6 {
-	@include rem(font-size, 20px);
+	@include rem(font-size, 16px);
 	font-weight: 400;
 }
 

@@ -1,0 +1,138 @@
+@import "variables";
+@import "mixins";
+
+.double-flex.full-right {
+	margin-right: $col * 2;
+	align-items: flex-start;
+	margin-top: $col;
+}
+
+.featured-post {
+	width: $col * 8;
+	cursor: pointer;
+	// contain: style;
+
+	.featured-post--image {
+		width: $col * 8;
+		height: $col * 5;
+		object-fit: cover;
+		z-index: 1;
+		transition: 1s $bezier;
+
+		&:hover + .featured-post--info {
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+			transform: translateY(-10%);
+		}
+	}
+
+	.featured-post--info {
+		background-color: #fff;
+		padding: $col / 3 $col / 2;
+		width: 100%;
+		box-sizing: border-box;
+		margin-top: -$col;
+		margin-left: $col;
+		z-index: 2;
+		position: relative;
+		transition: 225ms $bezier;
+
+		&:hover {
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+			transform: translateY(-10%);
+		}
+
+		.featured-post--title {
+			margin: 0;
+		}
+
+		.featured-post--author {
+			float: right;
+			margin-top: -1rem;
+		}
+	}
+}
+
+.post-list {
+	margin-left: $col * 2;
+
+	.post-list--item {
+		background-color: #fff;
+		display: flex;
+		height: $col * 2;
+		transition: 225ms $bezier;
+		cursor: pointer;
+
+		&:hover {
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+			transform: translateY(-10%);
+		}
+
+		&:not(:first-child) {
+			margin-top: $col / 2;
+		}
+
+		.post-list--image {
+			flex-grow: 1;
+			min-width: $col * 2;
+			max-width: $col * 2;
+			height: $col * 2;
+			display: block;
+			object-fit: cover;
+			background-color: #ccc;
+		}
+
+		.post-list--info {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: $col / 3 $col / 3 $col / 4;
+			height: $col * 2;
+			box-sizing: border-box;
+
+			.post-list--title {
+				margin: 0;
+				@include rem(font-size, 28px);
+				line-height: 1.2;
+				font-weight: 500;
+			}
+
+			.post-list--author {
+				align-self: flex-end;
+			}
+		}
+	}
+}
+
+.more-news {
+	background-color: white;
+	margin-top: $col;
+	width: 100%;
+	height: $col;
+	padding-left: $col / 4;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	transition: 300ms $bezier;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+		transform: translateY(-5%);
+	}
+
+	.more-news--title {
+		margin: 0;
+		line-height: 1;
+		padding-right: $col / 2;
+	}
+
+	.more-news--arrow {
+		color: white;
+		padding: $col / 8;
+		box-sizing: border-box;
+		height: $col;
+		width: $col;
+		background-color: black;
+	}
+}

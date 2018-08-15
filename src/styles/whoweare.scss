@@ -13,6 +13,10 @@
 			font-weight: 300;
 		}
 
+		.sub-title {
+			line-height: 1.2;
+		}
+
 		.arrow-right {
 			@include rem(font-size, 128px);
 			transform: translateX(-1.5rem);

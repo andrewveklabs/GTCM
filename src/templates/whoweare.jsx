@@ -5,6 +5,8 @@ import Page from "../components/Page";
 import PageNavigator from "../components/PageNavigator";
 import Button from "../components/Button";
 import { IoIosArrowThinRight } from "react-icons/lib/io";
+import posed, { PoseGroup } from "react-pose";
+import styleguide from "../components/styleguide";
 
 import "../styles/whoweare.scss";
 
@@ -16,28 +18,42 @@ export const WhoWeArePageTemplate = ({
 	totalCount,
 	transition,
 	image,
-	caption
+	caption,
+	location
 }) => {
 	const PageContent = contentComponent || Content;
 
 	return (
-		<Page transition={transition} index={index} totalCount={totalCount} className="section section--gradient-gray">
+		<Page
+			location={location}
+			transition={transition}
+			index={index}
+			totalCount={totalCount}
+			className="section section--gradient-gray">
 			<div className="double-flex">
 				<div className="left-side">
 					<span className="since-date">Since 2002</span>
 					<h2 className="sub-title">A Construction management company based in Alberta</h2>
-					<IoIosArrowThinRight className="arrow-right" />
+					<ArrowPose initialPose="exit" pose="enter">
+						<IoIosArrowThinRight className="arrow-right" />
+					</ArrowPose>
 					<p className="about-blurb">
 						<HTMLContent content={content} />
 						<Button simple>Read More</Button>
 					</p>
 				</div>
 				<div className="right-side">
-					<img className="whoweare-image" src={image} alt="Golden Triangle Construction Workers" />
-					<div className="whoweare-image--caption">
+					<WeAreImage
+						initialPose="exit"
+						pose="enter"
+						className="whoweare-image"
+						src={image}
+						alt="Golden Triangle Construction Workers"
+					/>
+					<DescriptionCard initialPose="exit" pose="enter" className="whoweare-image--caption">
 						<span className="whoweare-image--caption--title">ABOUT US</span>
 						<h5 className="whoweare-image--caption--body">{caption}</h5>
-					</div>
+					</DescriptionCard>
 				</div>
 			</div>
 			<PageNavigator prev={{ title: "Home", url: "/" }} next={{ title: "Projects", url: "/projects" }} />
@@ -45,17 +61,63 @@ export const WhoWeArePageTemplate = ({
 	);
 };
 
+const ArrowPose = posed.div({
+	enter: {
+		x: 0,
+		opacity: 1,
+		delay: 400,
+		transition: {
+			default: { ease: styleguide.bezierArray, duration: 1000 }
+		}
+	},
+	exit: {
+		x: "-10%",
+		opacity: 0
+	}
+});
+
+const WeAreImage = posed.img({
+	enter: {
+		y: 0,
+		opacity: 1,
+		delay: 400,
+		transition: {
+			default: { ease: styleguide.bezierArray, duration: 1000 }
+		}
+	},
+	exit: {
+		y: "10%",
+		opacity: 0
+	}
+});
+
+const DescriptionCard = posed.div({
+	enter: {
+		y: 0,
+		opacity: 1,
+		delay: 750,
+		transition: {
+			default: { ease: styleguide.bezierArray, duration: 700 }
+		}
+	},
+	exit: {
+		y: "15%",
+		opacity: 0
+	}
+});
+
 WhoWeArePageTemplate.propTypes = {
 	title: PropTypes.string.isRequired,
 	content: PropTypes.string,
 	contentComponent: PropTypes.func
 };
 
-const WhoWeArePage = ({ data }) => {
+const WhoWeArePage = ({ data, location }) => {
 	const { markdownRemark: post } = data;
 
 	return (
 		<WhoWeArePageTemplate
+			location={location}
 			index={post.frontmatter.index}
 			totalCount={data.totalPages.totalCount}
 			contentComponent={HTMLContent}
@@ -68,7 +130,8 @@ const WhoWeArePage = ({ data }) => {
 };
 
 WhoWeArePage.propTypes = {
-	data: PropTypes.object.isRequired
+	data: PropTypes.object.isRequired,
+	location: PropTypes.object.isRequired
 };
 
 export default WhoWeArePage;

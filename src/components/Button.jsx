@@ -12,7 +12,7 @@ const ButtonLink = styled(Link)`
 	font-weight: 500;
 	float: right;
 	margin-top: 0.2em;
-	padding-right: ${styleguide.col / 2}vw
+	padding-right: ${styleguide.col / 2}vw;
 
 	&:hover {
 		opacity: 1;
@@ -20,7 +20,7 @@ const ButtonLink = styled(Link)`
 	}
 `;
 
-const Button = ({ children, to }) => {
+const Button = ({ children, text, to }) => {
 	return (
 		<ButtonLink to={to}>
 			{children}
