@@ -46,9 +46,15 @@ module.exports = {
 			}
 		},
 		{
+			resolve: `gatsby-plugin-styled-components`,
+			options: {
+				displayName: false
+			}
+		},
+		{
 			resolve: `gatsby-plugin-google-fonts`,
 			options: {
-				fonts: [`Roboto\:300,400,500,600,700`]
+				fonts: [`Raleway\:300,400,500,600,700`, `Roboto\:300,400,500,600,700`]
 			}
 		},
 		"gatsby-plugin-netlify" // make sure to keep it last in the array

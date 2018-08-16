@@ -274,7 +274,8 @@ h6 {
 
 .menu-trigger {
 	background: transparent !important;
-	@include rem(font-size, 20px);
+	font-size: 20px !important;
+	font-size: 1.11111rem !important;
 	font-weight: 500 !important;
 	font-family: "Roboto" !important;
 	padding: 0 !important;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Helmet from "react-helmet";
 import Header from "./Header";
 import Indicator from "./Indicator";
 import Layout from "./layout";
@@ -22,6 +22,7 @@ class Page extends Component {
 		} = this.props;
 		return (
 			<Layout location={location}>
+				<Helmet title={title} />
 				<div
 					id={id}
 					className={`${className} Page-Component`}
