@@ -1,41 +1,69 @@
-import React from "react";
+import React, { Component } from "react";
 import Page from "../components/Page";
 import PageNavigator from "../components/PageNavigator";
 import "../styles/team.scss";
 import posed from "react-pose";
 import styleguide from "../components/styleguide";
+import Modal from "react-modal";
+import CareerModal from "../components/CareerModal";
 
-const Team = ({ data, location }) => {
-	const { markdownRemark: team } = data;
-	return (
-		<Page
-			location={location}
-			index={team.frontmatter.index}
-			totalCount={data.totalPages.totalCount}
-			title="Team"
-			className="section section--team section--gradient-gray">
-			<div className="team-members">
-				{team.frontmatter.members.map((member, i) => (
-					<div key={member.name} className="team-member">
-						<TeamImage
-							i={i}
-							pose="enter"
-							initialPose="exit"
-							className="team-member--image"
-							src={member.image}
-							alt={member.name}
-						/>
-						<TeamInfo i={i} pose="enter" initialPose="exit" className="team-member--info">
-							<h3 className="team-member--name">{member.name}</h3>
-							<span className="team-member--title">{member.title}</span>
-						</TeamInfo>
-					</div>
-				))}
-			</div>
-			<PageNavigator prev={{ title: "Projects", url: "/projects" }} next={{ title: "Contact", url: "/contact" }} />
-		</Page>
-	);
-};
+Modal.setAppElement("#___gatsby");
+
+class Team extends Component {
+	state = {
+		isOpen: false
+	};
+
+	openModal = () => {
+		this.setState({ isOpen: true });
+	};
+
+	render() {
+		const { data, location } = this.props;
+		const { markdownRemark: team } = data;
+		return (
+			<Page
+				location={location}
+				index={team.frontmatter.index}
+				totalCount={data.totalPages.totalCount}
+				title="Leadership"
+				className="section section--team section--gradient-gray">
+				<div className="team-members">
+					{team.frontmatter.members.map((member, i) => (
+						<div key={member.name} className="team-member">
+							<TeamImage
+								i={i}
+								pose="enter"
+								initialPose="exit"
+								className="team-member--image"
+								src={member.image}
+								alt={member.name}
+							/>
+							<TeamInfo i={i} pose="enter" initialPose="exit" className="team-member--info">
+								<h3 className="team-member--name">{member.name}</h3>
+								<span className="team-member--title">{member.title}</span>
+							</TeamInfo>
+						</div>
+					))}
+				</div>
+				<h5 onClick={this.openModal} className="team-career--button">
+					Careers
+				</h5>
+				<PageNavigator prev={{ title: "Projects", url: "/projects" }} next={{ title: "Contact", url: "/contact" }} />
+				<Modal
+					closeTimeoutMS={225}
+					className="Project-Modal"
+					onRequestClose={() => this.setState({ isOpen: false })}
+					overlayClassName="Overlay"
+					shouldCloseOnOverlayClick={true}
+					shouldCloseOnEsc={true}
+					isOpen={this.state.isOpen}>
+					<CareerModal text={team.frontmatter.careertext} />
+				</Modal>
+			</Page>
+		);
+	}
+}
 
 const TeamImage = posed.img({
 	enter: {
@@ -77,6 +105,7 @@ export const TeamPageQuery = graphql`
 			frontmatter {
 				title
 				index
+				careertext
 				members {
 					name
 					title

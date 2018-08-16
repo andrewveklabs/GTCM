@@ -47,3 +47,21 @@
 		}
 	}
 }
+
+.team-career--button {
+	background: $yellowGradient;
+	display: inline-block;
+	font-weight: 700;
+	line-height: 0;
+	padding: $col / 3 $col / 2;
+	position: absolute;
+	bottom: $col;
+	right: $col * 2;
+	cursor: pointer;
+	transition: 225ms $bezier;
+
+	&:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 3px 8px transparentize(darken($yellow, 15), 0.3);
+	}
+}

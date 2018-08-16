@@ -147,9 +147,9 @@ const ProjectCardContainer = posed(ProjectCard)({
 	enter: {
 		scale: 1,
 		opacity: 1,
-		delay: ({ index }) => index * 175 + 200,
+		delay: ({ index }) => index * 175 + 100,
 		transition: {
-			default: { type: "spring", damping: 25, duration: 250 }
+			default: { type: "spring", damping: 15, duration: 200 }
 		}
 	},
 	exit: {

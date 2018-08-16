@@ -3,6 +3,18 @@ module.exports = {
 		title: "GTCM"
 	},
 	plugins: [
+		{
+			resolve: `gatsby-plugin-manifest`,
+			options: {
+				name: `Golden Triangle Construction Management`,
+				short_name: `GTCM`,
+				start_url: `/`,
+				background_color: "#ffffff",
+				theme_color: "#FFDC41",
+				display: `standalone`,
+				icon: `src/img/ICON_PNG.png` // This path is relative to the root of the site.
+			}
+		},
 		"gatsby-plugin-react-helmet",
 		"gatsby-plugin-sass",
 		{

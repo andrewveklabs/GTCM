@@ -1,5 +1,6 @@
 const styleguide = {
 	blue: "#6E98AA",
+	yellow: "#FFDC41",
 	col: 4.1666666667,
 	c: x => `${x * 4.1666666667}vw`,
 	bezier: "0, 0, 0.5, 1",
