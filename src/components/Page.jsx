@@ -6,6 +6,7 @@ import Layout from "./layout";
 import posed from "react-pose";
 import styleguide from "./styleguide";
 import PageNavigator from "./PageNavigator";
+import { navigateTo } from "gatsby";
 
 class Page extends Component {
 	state = {
@@ -13,12 +14,35 @@ class Page extends Component {
 		pose: "enter"
 	};
 
-	componentWillMount() {
-		this.setState({ pose: "enter" });
+	handleScroll = e => {
+		if (e.deltaY < -500) {
+			setTimeout(() => {
+				navigateTo(this.props.next.url);
+			}, 100);
+		} else if (e.deltaY > 500) {
+			setTimeout(() => {
+				navigateTo(this.props.prev.url);
+			}, 100);
+		}
+	};
+
+	handleKey = e => {
+		if (e.key == "ArrowRight" && !e.repeat) {
+			navigateTo(this.props.next.url);
+		} else if (e.key == "ArrowLeft" && !e.repeat) {
+			navigateTo(this.props.prev.url);
+		}
+	};
+
+	componentDidMount() {
+		setTimeout(() => {
+			window.addEventListener("wheel", this.handleScroll);
+			window.addEventListener("keydown", this.handleKey);
+		}, 1000);
 	}
 
 	componentWillUnmount() {
-		this.setState({ pose: this.state.direction });
+		window.removeEventListener("wheel", this.handleScroll);
 	}
 
 	render() {
@@ -50,8 +74,8 @@ class Page extends Component {
 					<Header line={line} title={title} color={light ? "white" : "black"} />
 					<Indicator light={light} index={index} totalCount={totalCount + 1} />
 					<PageNavigator
-						leftClicked={() => (this.direction = "fromRight")}
-						rightClicked={() => (this.direction = "fromLeft")}
+						leftClicked={() => this.setState({ prev: prev.url })}
+						rightClicked={() => this.setState({ next: next.url })}
 						light={light}
 						prev={prev}
 						next={next}
@@ -66,12 +90,14 @@ class Page extends Component {
 const Swipe = posed.div({
 	enter: {
 		opacity: 1,
+		scale: 1,
 		delayChildren: 500,
 		transition: {
-			default: { ease: styleguide.bezierArray, duration: 1000 }
+			default: { ease: styleguide.bezierArray, duration: 750 }
 		}
 	},
 	exit: {
+		scale: 1.05,
 		opacity: 0
 	},
 	fromLeft: {

@@ -223,6 +223,7 @@ h6 {
 		transparent 100%
 	);
 	background-repeat: no-repeat;
+	padding-right: $col / 4;
 
 	&.Contact {
 		background: linear-gradient(

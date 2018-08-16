@@ -16,6 +16,7 @@ const News = ({ data, location }) => {
 		<Page
 			location={location}
 			prev={{ title: "Contact", url: "/contact" }}
+			title="News"
 			index={data.markdownRemark.frontmatter.index}
 			totalCount={totalPages.totalCount}
 			className="section section--gradient-gray">

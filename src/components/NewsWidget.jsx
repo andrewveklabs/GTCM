@@ -48,30 +48,30 @@ const WidgetContainer = posed.div({
 const WidgetText = posed.h3({
 	enter: {
 		opacity: 1,
-		x: 0,
-		delay: 1000,
+		y: 0,
+		delay: 1250,
 		transition: {
 			default: { type: "tween", ease: "easeOut", duration: 600 }
 		}
 	},
 	exit: {
 		opacity: 0,
-		x: "2.5%"
+		y: "15%"
 	}
 });
 
 const WidgetInfo = posed.span({
 	enter: {
 		opacity: 1,
-		x: 0,
+		y: 0,
 		delay: 1100,
 		transition: {
-			default: { type: "tween", ease: "easeOut", duration: 500 }
+			default: { type: "tween", ease: "easeOut", duration: 800 }
 		}
 	},
 	exit: {
 		opacity: 0,
-		x: "100%"
+		y: "100%"
 	}
 });
 

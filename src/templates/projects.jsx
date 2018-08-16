@@ -76,7 +76,7 @@ class Projects extends Component {
 									onPoseComplete={() => {
 										setTimeout(() => {
 											this.setState({ transition: "225ms" });
-										}, 1000);
+										}, 1500);
 									}}
 									ongoing={project.node.frontmatter.ongoing}
 									transition={this.state.transition}
@@ -146,15 +146,15 @@ const MoreProjects = posed.div({
 
 const ProjectCardContainer = posed(ProjectCard)({
 	enter: {
-		scale: 1,
+		y: 0,
 		opacity: 1,
-		delay: ({ index }) => index * 175 + 100,
+		delay: ({ index }) => index * 100 + 350,
 		transition: {
-			default: { type: "spring", damping: 15, duration: 200 }
+			default: { type: "spring", damping: 10, duration: 400 }
 		}
 	},
 	exit: {
-		scale: 0.9
+		y: "5%"
 	}
 });
 

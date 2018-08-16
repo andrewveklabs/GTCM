@@ -21,6 +21,7 @@ const IndexPage = ({ data, transition, location }) => {
 			index={1}
 			totalCount={totalCount}
 			light
+			line={false}
 			id="front-page"
 			next={{ title: "Who We Are", url: "/whoweare" }}
 			className="top-level-page page"
@@ -56,9 +57,9 @@ const Tagline = posed.div({
 	enter: {
 		opacity: 1,
 		width: "100%",
-		delayChildren: 1000,
+		delayChildren: 900,
 		transition: {
-			default: { ease: styleguide.bezierArray, duration: 750 }
+			default: { ease: "easeInOut", duration: 750 }
 		}
 	},
 	exit: {
