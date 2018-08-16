@@ -24,6 +24,8 @@ class Team extends Component {
 		return (
 			<Page
 				location={location}
+				prev={{ title: "Projects", url: "/projects" }}
+				next={{ title: "Contact", url: "/contact" }}
 				index={team.frontmatter.index}
 				totalCount={data.totalPages.totalCount}
 				title="Leadership"
@@ -49,7 +51,6 @@ class Team extends Component {
 				<h5 onClick={this.openModal} className="team-career--button">
 					Careers
 				</h5>
-				<PageNavigator prev={{ title: "Projects", url: "/projects" }} next={{ title: "Contact", url: "/contact" }} />
 				<Modal
 					closeTimeoutMS={225}
 					className="Project-Modal"

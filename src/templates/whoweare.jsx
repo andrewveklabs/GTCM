@@ -75,6 +75,8 @@ class WhoWeArePage extends Component {
 
 		return (
 			<Page
+				prev={{ title: "Home", url: "/" }}
+				next={{ title: "Projects", url: "/projects" }}
 				location={location}
 				index={post.frontmatter.index}
 				totalCount={data.totalPages.totalCount}
@@ -108,7 +110,6 @@ class WhoWeArePage extends Component {
 						</DescriptionCard>
 					</div>
 				</div>
-				<PageNavigator prev={{ title: "Home", url: "/" }} next={{ title: "Projects", url: "/projects" }} />
 				<Modal
 					closeTimeoutMS={225}
 					className="Modal"

@@ -15,6 +15,7 @@ const News = ({ data, location }) => {
 	return (
 		<Page
 			location={location}
+			prev={{ title: "Contact", url: "/contact" }}
 			index={data.markdownRemark.frontmatter.index}
 			totalCount={totalPages.totalCount}
 			className="section section--gradient-gray">
@@ -54,7 +55,6 @@ const News = ({ data, location }) => {
 					))}
 				</div>
 			</div>
-			<PageNavigator prev={{ title: "Contact", url: "/contact" }} />
 		</Page>
 	);
 };

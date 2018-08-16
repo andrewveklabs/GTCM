@@ -60,6 +60,8 @@ class Projects extends Component {
 		const { allMarkdownRemark: projects, totalPages, markdownRemark } = this.props.data;
 		return (
 			<Page
+				prev={{ title: "Who We Are", url: "/whoweare" }}
+				next={{ title: "Team", url: "/team" }}
 				location={this.props.location}
 				totalCount={totalPages.totalCount}
 				title="Projects"
@@ -102,7 +104,6 @@ class Projects extends Component {
 						<IoIosArrowRight className="more-projects--arrow" />
 					</MoreProjects>
 				</div>
-				<PageNavigator prev={{ title: "Who We Are", url: "/whoweare" }} next={{ title: "Team", url: "/team" }} />
 				<Modal
 					overlayClassName="Overlay Project-Overlay"
 					className="Project-Modal"

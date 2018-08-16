@@ -8,3 +8,26 @@
 		margin-top: -$col;
 	}
 }
+
+.hero-tagline {
+	margin-left: $col * 2;
+	display: flex;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	align-items: center;
+
+	.hero-tagline--inner {
+		background: white;
+		padding: 0 $col / 2;
+		padding-right: $col * 1.5;
+	}
+
+	h1 {
+		color: black;
+		font-weight: 800;
+		white-space: nowrap;
+		font-size: 3.5rem;
+		line-height: 1.3;
+	}
+}

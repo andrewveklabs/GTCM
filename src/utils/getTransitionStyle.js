@@ -2,16 +2,12 @@ import styleguide from "../components/styleguide";
 
 const getTransitionStyles = timeout => {
 	return {
-		entering: {
-			opacity: 0
-		},
+		entering: {},
 		entered: {
-			transition: `${timeout}ms cubic-bezier(${styleguide.bezier})`,
-			opacity: 1
+			transition: `${timeout}ms cubic-bezier(${styleguide.bezier})`
 		},
 		exiting: {
-			transition: `${timeout}ms cubic-bezier(${styleguide.bezier})`,
-			opacity: 0
+			transition: `${timeout}ms cubic-bezier(${styleguide.bezier})`
 		}
 	};
 };

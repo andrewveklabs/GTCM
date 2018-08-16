@@ -9,6 +9,9 @@ const Contact = ({ data, location }) => (
 	<Page
 		light={true}
 		blueLine={true}
+		light
+		prev={{ title: "Team", url: "/team" }}
+		next={{ title: "News", url: "/news" }}
 		title="Contact"
 		index={data.markdownRemark.frontmatter.index}
 		totalCount={data.totalPages.totalCount}
@@ -41,7 +44,6 @@ const Contact = ({ data, location }) => (
 				</form>
 			</div>
 		</div>
-		<PageNavigator light prev={{ title: "Team", url: "/team" }} next={{ title: "News", url: "/news" }} />
 	</Page>
 );
 

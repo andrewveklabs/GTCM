@@ -4,10 +4,10 @@ import { IoIosArrowLeft, IoIosArrowRight } from "react-icons/lib/io";
 
 class NavigatorArrow extends PureComponent {
 	render() {
-		const { left, right, text, url } = this.props;
+		const { left, right, text, url, leftClicked, rightClicked } = this.props;
 		if (left) {
 			return (
-				<Link to={url} className="page-navigator--part page-navigator--left">
+				<Link to={url} onClick={leftClicked} className="page-navigator--part page-navigator--left">
 					<span className="page-navigator--icon">
 						<IoIosArrowLeft />
 					</span>
@@ -16,7 +16,7 @@ class NavigatorArrow extends PureComponent {
 			);
 		} else if (right) {
 			return (
-				<Link to={url} className="page-navigator--part page-navigator--right">
+				<Link to={url} onClick={rightClicked} className="page-navigator--part page-navigator--right">
 					<span className="page-navigator--text">{text}</span>
 					<span className="page-navigator--icon">
 						<IoIosArrowRight />
@@ -27,11 +27,11 @@ class NavigatorArrow extends PureComponent {
 	}
 }
 
-const PageNavigator = ({ next, prev, light }) => {
+const PageNavigator = ({ next, prev, light, leftClicked, rightClicked }) => {
 	return (
 		<div className={`page-navigator ${light ? "light" : ""}`}>
-			{prev ? <NavigatorArrow text={prev.title} url={prev.url} left /> : ""}
-			{next ? <NavigatorArrow text={next.title} url={next.url} right /> : ""}
+			{prev ? <NavigatorArrow leftClicked={leftClicked} text={prev.title} url={prev.url} left /> : ""}
+			{next ? <NavigatorArrow rightClicked={rightClicked} text={next.title} url={next.url} right /> : ""}
 		</div>
 	);
 };
