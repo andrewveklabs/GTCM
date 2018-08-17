@@ -1,6 +1,7 @@
 module.exports = {
 	siteMetadata: {
-		title: "GTCM"
+		title: "GTCM",
+		siteUrl: "https://gtcm.ca"
 	},
 	plugins: [
 		{
@@ -24,9 +25,9 @@ module.exports = {
 		},
 		"gatsby-plugin-react-helmet",
 		"gatsby-plugin-sass",
-		{
-			resolve: `gatsby-plugin-sitemap`
-		},
+		// {
+		// 	resolve: `gatsby-plugin-sitemap`
+		// },
 		{
 			resolve: "gatsby-source-filesystem",
 			options: {

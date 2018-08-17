@@ -40,10 +40,11 @@ class PageNavigator extends Component {
 		const { next, prev, light } = this.props;
 		return (
 			<div className={`page-navigator ${light ? "light" : ""}`}>
-				{createPortal(
-					<Swiper animateOnMount pose={`enter${this.state.pose}`} initialPose={`exit${this.state.pose}`} />,
-					typeof document !== "undefined" && document.getElementById("___gatsby")
-				)}
+				{typeof window !== "undefined" &&
+					createPortal(
+						<Swiper animateOnMount pose={`enter${this.state.pose}`} initialPose={`exit${this.state.pose}`} />,
+						typeof document !== "undefined" && document.getElementById("___gatsby")
+					)}
 				{prev && <NavigatorArrow onClick={() => this.handleClick(prev.url, "Left")} text={prev.title} left />}
 				{next && <NavigatorArrow onClick={() => this.handleClick(next.url, "Right")} text={next.title} right />}
 			</div>

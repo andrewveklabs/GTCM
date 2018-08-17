@@ -5043,12 +5043,13 @@ gatsby-plugin-netlify-cms@^2.0.1:
     html-webpack-plugin "^2.30.1"
     netlify-identity-widget "^1.4.11"
 
-gatsby-plugin-netlify@next:
-  version "1.0.19-11"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-1.0.19-11.tgz#4b956d228cfd3f21b70fe8258e65a12902fe95f3"
+gatsby-plugin-netlify@^2.0.0-beta.6:
+  version "2.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.0.0-beta.6.tgz#e446e95b9f29bbf8d707a957ff0ae7410afa47ce"
   dependencies:
-    "@babel/runtime" "7.0.0-beta.47"
+    "@babel/runtime" "7.0.0-beta.52"
     fs-extra "^4.0.2"
+    kebab-hash "^0.1.2"
     lodash "^4.17.4"
     webpack-assets-manifest "^1.0.0"
 
@@ -9724,9 +9725,18 @@ react-dnd@^2.5.4:
     lodash "^4.2.0"
     prop-types "^15.5.10"
 
-react-dom@^16.0.0, react-dom@^16.4.0:
+react-dom@^16.0.0:
   version "16.4.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.0.tgz#099f067dd5827ce36a29eaf9a6cdc7cbf6216b1e"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
+react-dom@^16.4.1:
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.2.tgz#4afed569689f2c561d2b8da0b819669c38a0bda4"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -10013,15 +10023,6 @@ react-waypoint@^7.1.0:
   dependencies:
     consolidated-events "^1.1.0"
     prop-types "^15.0.0"
-
-react@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.4.0.tgz#402c2db83335336fba1962c08b98c6272617d585"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
 
 react@^16.4.1:
   version "16.4.2"
