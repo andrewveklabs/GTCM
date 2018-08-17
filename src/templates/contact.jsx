@@ -2,15 +2,15 @@ import React from "react";
 import Page from "../components/Page";
 import "../styles/contact.scss";
 import { HTMLContent } from "../components/Content";
-import PageNavigator from "../components/PageNavigator";
 import { IoSocialTwitter, IoSocialFacebook, IoSocialGoogleplus } from "react-icons/lib/io";
+import { graphql } from "gatsby";
 
 const Contact = ({ data, location }) => (
 	<Page
 		light={true}
 		blueLine={true}
 		light
-		prev={{ title: "Team", url: "/team" }}
+		prev={{ title: "Leadership", url: "/leadership" }}
 		next={{ title: "News", url: "/news" }}
 		title="Contact"
 		index={data.markdownRemark.frontmatter.index}

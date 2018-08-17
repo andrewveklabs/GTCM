@@ -5,7 +5,9 @@ import "../styles/team.scss";
 import posed from "react-pose";
 import styleguide from "../components/styleguide";
 import Modal from "react-modal";
+import { graphql } from "gatsby";
 import CareerModal from "../components/CareerModal";
+import Img from "gatsby-image";
 
 Modal.setAppElement("#___gatsby");
 
@@ -18,9 +20,16 @@ class Team extends Component {
 		this.setState({ isOpen: true });
 	};
 
+	componentDidMount() {
+		if (this.props.location.hash === "#careers") {
+			this.openModal();
+		}
+	}
+
 	render() {
 		const { data, location } = this.props;
 		const { markdownRemark: team } = data;
+
 		return (
 			<Page
 				location={location}
@@ -33,14 +42,9 @@ class Team extends Component {
 				<div className="team-members">
 					{team.frontmatter.members.map((member, i) => (
 						<div key={member.name} className="team-member">
-							<TeamImage
-								i={i}
-								pose="enter"
-								initialPose="exit"
-								className="team-member--image"
-								src={member.image}
-								alt={member.name}
-							/>
+							<TeamImage i={i} pose="enter" initialPose="exit">
+								<Img className="team-member--image" fluid={member.image.childImageSharp.fluid} alt={member.name} />
+							</TeamImage>
 							<TeamInfo i={i} pose="enter" initialPose="exit" className="team-member--info">
 								<h3 className="team-member--name">{member.name}</h3>
 								<span className="team-member--title">{member.title}</span>
@@ -66,7 +70,7 @@ class Team extends Component {
 	}
 }
 
-const TeamImage = posed.img({
+const TeamImage = posed.div({
 	enter: {
 		y: 0,
 		opacity: 1,
@@ -110,7 +114,13 @@ export const TeamPageQuery = graphql`
 				members {
 					name
 					title
-					image
+					image {
+						childImageSharp {
+							fluid(quality: 100) {
+								...GatsbyImageSharpFluid_withWebp
+							}
+						}
+					}
 				}
 			}
 		}

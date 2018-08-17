@@ -38,7 +38,7 @@
 
 		&:hover {
 			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-			transform: translateY(-10%);
+			transform: translateY(-10px);
 		}
 
 		.featured-post--title {
@@ -64,7 +64,7 @@
 
 		&:hover {
 			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-			transform: translateY(-10%);
+			transform: translateY(-5px);
 		}
 
 		&:not(:first-child) {
@@ -118,7 +118,7 @@
 
 	&:hover {
 		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-		transform: translateY(-5%);
+		transform: translateY(-5px);
 	}
 
 	.more-news--title {

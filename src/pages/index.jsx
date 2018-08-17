@@ -1,12 +1,11 @@
 import React from "react";
-import pose from "popmotion-pose";
 import NewsWidget from "../components/NewsWidget";
-import PageNavigator from "../components/PageNavigator";
+import { graphql } from "gatsby";
 import Page from "../components/Page";
 import posed from "react-pose";
 import styleguide from "../components/styleguide";
+import Img from "gatsby-image";
 
-import bg from "../../static/img/news-mock.jpg";
 import fullLogo from "../img/Full.svg";
 import "../styles/index.scss";
 
@@ -14,6 +13,7 @@ const IndexPage = ({ data, transition, location }) => {
 	const { title, date } = data.allMarkdownRemark.edges[0].node.frontmatter;
 	const { slug } = data.allMarkdownRemark.edges[0].node.fields;
 	const { totalCount } = data.totalPages;
+	const heroimage = data.heroimage.childImageSharp.fluid;
 
 	return (
 		<Page
@@ -24,8 +24,8 @@ const IndexPage = ({ data, transition, location }) => {
 			line={false}
 			id="front-page"
 			next={{ title: "Who We Are", url: "/whoweare" }}
-			className="top-level-page page"
-			style={{ backgroundImage: `url(${bg})`, backgroundSize: "cover" }}>
+			className="top-level-page page">
+			<Img outerWrapperClassName="hero-image" fluid={heroimage} />
 			<img src={fullLogo} alt="GTCM logo" className="logo" />
 			<div className="hero-tagline">
 				<Tagline className="hero-tagline--inner" pose="enter" initialPose="exit">
@@ -72,6 +72,13 @@ export default IndexPage;
 
 export const pageQuery = graphql`
 	query IndexQuery {
+		heroimage: file(relativePath: { eq: "news-mock.jpg" }) {
+			childImageSharp {
+				fluid(maxWidth: 2500, quality: 100) {
+					...GatsbyImageSharpFluid_withWebp
+				}
+			}
+		}
 		allMarkdownRemark(
 			limit: 1
 			sort: { order: DESC, fields: [frontmatter___date] }

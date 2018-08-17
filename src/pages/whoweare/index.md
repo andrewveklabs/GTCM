@@ -5,7 +5,7 @@ title: Who We Are
 level: top
 index: 2
 image: /img/whoweare.jpg
-caption: "To provide industry leading services to all clients , with a  commitment to client satisfaction and trust."
+caption: "To provide industry leading services to all clients, with a  commitment to client satisfaction and trust."
 readmore: "A partner built on trust. We create value for our clients by going beyond just budget and schedule. Golden Triangle’s goal is to not only build structures, but relationships and positive experiences."
 vision: To use our God given talents to further the success and growth of every community
 ---

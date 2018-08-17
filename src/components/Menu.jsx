@@ -34,9 +34,9 @@ const Menu = ({ color }) => (
 					<MenuItem url="/whoweare" text="Who We Are" icon={IoIosFlowerOutline} hoverIcon={IoIosFlower} />
 					<MenuItem url="/projects" text="Projects" icon={IoIosBoltOutline} hoverIcon={IoIosBolt} />
 					<MenuItem url="/news" text="News" icon={IoIosPaperOutline} hoverIcon={IoIosPaper} />
-					<MenuItem url="/team" text="Leadership" icon={IoIosPeopleOutline} hoverIcon={IoIosPeople} />
+					<MenuItem url="/leadership" text="Leadership" icon={IoIosPeopleOutline} hoverIcon={IoIosPeople} />
 					<MenuItem url="/services" text="Services" icon={IoIosAnalyticsOutline} hoverIcon={IoIosAnalytics} />
-					<MenuItem url="/team#careers" text="Careers" icon={IoIosBriefcaseOutline} hoverIcon={IoIosBriefcase} />
+					<MenuItem url="/leadership#careers" text="Careers" icon={IoIosBriefcaseOutline} hoverIcon={IoIosBriefcase} />
 					<MenuItem url="/contact" text="Contact" icon={IoIosChatboxesOutline} hoverIcon={IoIosChatboxes} />
 				</MenuContainerInner>
 				<MenuFooter justifyBetween>

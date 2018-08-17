@@ -8,6 +8,8 @@ import { IoIosArrowThinRight } from "react-icons/lib/io";
 import posed from "react-pose";
 import styleguide from "../components/styleguide";
 import Modal from "react-modal";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 import "../styles/whoweare.scss";
 
@@ -26,7 +28,7 @@ const ArrowPose = posed.div({
 	}
 });
 
-const WeAreImage = posed.img({
+const WeAreImage = posed.div({
 	enter: {
 		y: 0,
 		opacity: 1,
@@ -97,13 +99,13 @@ class WhoWeArePage extends Component {
 						</p>
 					</div>
 					<div className="right-side">
-						<WeAreImage
-							initialPose="exit"
-							pose="enter"
-							className="whoweare-image"
-							src={post.frontmatter.image}
-							alt="Golden Triangle Construction Workers"
-						/>
+						<WeAreImage initialPose="exit" pose="enter">
+							<Img
+								className="whoweare-image"
+								fluid={post.frontmatter.image.childImageSharp.fluid}
+								alt="Golden Triangle Construction Workers"
+							/>
+						</WeAreImage>
 						<DescriptionCard initialPose="exit" pose="enter" className="whoweare-image--caption">
 							<h6 className="whoweare-image--caption--title">OUR MISSION</h6>
 							<span className="whoweare-image--caption--body">{post.frontmatter.caption}</span>
@@ -148,7 +150,13 @@ export const WhoWeArePageQuery = graphql`
 			frontmatter {
 				title
 				index
-				image
+				image {
+					childImageSharp {
+						fluid(maxWidth: 300, quality: 100) {
+							...GatsbyImageSharpFluid_withWebp
+						}
+					}
+				}
 				caption
 				readmore
 				vision

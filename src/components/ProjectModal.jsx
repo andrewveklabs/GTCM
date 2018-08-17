@@ -4,6 +4,7 @@ import Flex, { FlexItem } from "styled-flex-component";
 import styleguide from "./styleguide";
 import { IoIosLightbulbOutline, IoIosCheckmarkOutline, IoIosSnowy } from "react-icons/lib/io";
 import { HTMLContent } from "./Content";
+import Img from "gatsby-image";
 
 const FeatureIcon = ({ icon, className }) => {
 	switch (icon) {
@@ -21,7 +22,7 @@ const FeatureIcon = ({ icon, className }) => {
 const ProjectModal = ({ title, content, image, images, year, features, type, date, description, html }) => {
 	return (
 		<ModalContainer>
-			<ModalImage src={image} alt={`${title} image`} />
+			<ModalImage fluid={image.childImageSharp.fluid} alt={`${title} image`} />
 			<ModalInner>
 				<Flex justifyBetween alignCenter>
 					<FlexItem>
@@ -96,7 +97,7 @@ const FeatureText = styled.span`
 	text-transform: capitalize;
 `;
 
-const ModalImage = styled.img`
+const ModalImage = styled(Img)`
 	width: 100%;
 	max-height: 400px;
 	object-fit: cover;

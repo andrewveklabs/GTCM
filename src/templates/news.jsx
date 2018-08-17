@@ -4,6 +4,8 @@ import LineThrough from "../components/LineThrough";
 import { IoIosArrowRight } from "react-icons/lib/io";
 import PageNavigator from "../components/PageNavigator";
 import _ from "lodash";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 import "../styles/news.scss";
 
@@ -22,9 +24,9 @@ const News = ({ data, location }) => {
 			className="section section--gradient-gray">
 			<div className="double-flex full-right">
 				<div className="featured-post">
-					<img
+					<Img
 						alt={posts[0].node.frontmatter.title}
-						src={posts[0].node.frontmatter.image}
+						fluid={posts[0].node.frontmatter.image.childImageSharp.fluid}
 						className="featured-post--image"
 					/>
 					<div className="featured-post--info">
@@ -43,7 +45,11 @@ const News = ({ data, location }) => {
 				<div className="post-list">
 					{posts.filter((p, i) => i !== 0).map(post => (
 						<div key={post.node.id} className="post-list--item">
-							<img src={post.node.frontmatter.image} alt={post.node.frontmatter.title} className="post-list--image" />
+							<Img
+								fluid={post.node.frontmatter.image.childImageSharp.fluid}
+								alt={post.node.frontmatter.title}
+								className="post-list--image"
+							/>
 							<div className="post-list--info">
 								<h5 className="post-list--title">{_.truncate(post.node.frontmatter.title, { length: 55 })}</h5>
 								{post.node.frontmatter.author && (
@@ -86,7 +92,13 @@ export const NewsPageQuery = graphql`
 					}
 					frontmatter {
 						title
-						image
+						image {
+							childImageSharp {
+								fluid(maxWidth: 600, quality: 100) {
+									...GatsbyImageSharpFluid_withWebp
+								}
+							}
+						}
 						author
 						date(formatString: "YYYY")
 					}

@@ -1,26 +1,26 @@
-/* globals window CustomEvent */
-import createHistory from "history/createBrowserHistory";
+// /* globals window CustomEvent */
+// import createHistory from "history/createBrowserHistory";
 
-const timeout = 150;
-const historyExitingEventType = `history::entering`;
+// const timeout = 150;
+// const historyExitingEventType = `history::entering`;
 
-const getUserConfirmation = (pathname, callback) => {
-	const event = new CustomEvent(historyExitingEventType, { detail: { pathname } });
+// const getUserConfirmation = (pathname, callback) => {
+// 	const event = new CustomEvent(historyExitingEventType, { detail: { pathname } });
 
-	window.dispatchEvent(event);
-	setTimeout(() => {
-		callback(true);
-	}, timeout);
-};
+// 	window.dispatchEvent(event);
+// 	setTimeout(() => {
+// 		callback(true);
+// 	}, timeout);
+// };
 
-let history;
-if (typeof document !== "undefined") {
-	history = createHistory({ getUserConfirmation });
-	// block must return a string to conform
-	history.block((location, action) => {
-		return location.pathname;
-	});
-}
-export let replaceHistory = () => history;
+// let history;
+// if (typeof document !== "undefined") {
+// 	history = createHistory({ getUserConfirmation });
+// 	// block must return a string to conform
+// 	history.block((location, action) => {
+// 		return location.pathname;
+// 	});
+// }
+// export let replaceHistory = () => history;
 
-export { historyExitingEventType, timeout };
+// export { historyExitingEventType, timeout };

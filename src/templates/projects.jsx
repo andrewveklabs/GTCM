@@ -11,6 +11,7 @@ import { IoIosArrowRight, IoIosLightbulbOutline, IoIosCheckmarkOutline, IoIosSno
 import styleguide from "../components/styleguide";
 import posed, { PoseGroup } from "react-pose";
 import "../styles/projects.scss";
+import { graphql } from "gatsby";
 
 const FeatureIcon = ({ icon, className }) => {
 	switch (icon) {
@@ -28,7 +29,7 @@ const FeatureIcon = ({ icon, className }) => {
 const ProjectCard = ({ title, type, image, features, hostRef, transition, ongoing, onClick }) => (
 	<div onClick={onClick} className="project-card" style={{ transition }} ref={hostRef}>
 		{ongoing && <Badge>{console.log(ongoing)}ongoing</Badge>}
-		<img className="project-card--image" src={image} alt={title} />
+		<Img className="project-card--image" fluid={image.childImageSharp.fluid} alt={title} />
 		<div className="project-card--bottom">
 			<h4 className="project-card--title">{title}</h4>
 			<span className="project-card--type">{type}</span>
@@ -61,7 +62,7 @@ class Projects extends Component {
 		return (
 			<Page
 				prev={{ title: "Who We Are", url: "/whoweare" }}
-				next={{ title: "Team", url: "/team" }}
+				next={{ title: "Leadership", url: "/leadership" }}
 				location={this.props.location}
 				totalCount={totalPages.totalCount}
 				title="Projects"
@@ -148,13 +149,13 @@ const ProjectCardContainer = posed(ProjectCard)({
 	enter: {
 		y: 0,
 		opacity: 1,
-		delay: ({ index }) => index * 100 + 350,
+		delay: ({ index }) => index * 250 + 350,
 		transition: {
-			default: { type: "spring", damping: 10, duration: 400 }
+			default: { ease: styleguide.bezierArray, duration: 1000 }
 		}
 	},
 	exit: {
-		y: "5%"
+		y: "10%"
 	}
 });
 
@@ -183,7 +184,13 @@ export const ProjectPageQuery = graphql`
 					frontmatter {
 						title
 						ongoing
-						image
+						image {
+							childImageSharp {
+								fluid(maxWidth: 1200, quality: 100) {
+									...GatsbyImageSharpFluid_withWebp
+								}
+							}
+						}
 						type
 						description
 						year: date(formatString: "YYYY")

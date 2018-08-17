@@ -1,7 +1,7 @@
 ---
-templateKey: 'team'
-path: /team
-title: Team
+templateKey: 'leadership'
+path: /leadership
+title: Leadership
 level: top
 index: 4
 members:

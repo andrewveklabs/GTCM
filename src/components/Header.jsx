@@ -1,6 +1,6 @@
 import React, { PureComponent, Component, findDOMNode } from "react";
 import { createPortal } from "react-dom";
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 import styled from "styled-components";
 import Flex, { FlexItem } from "styled-flex-component";
 import Menu from "./Menu";
