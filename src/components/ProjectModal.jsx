@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import Flex, { FlexItem } from "styled-flex-component";
 import styleguide from "./styleguide";
 import { IoIosLightbulbOutline, IoIosCheckmarkOutline, IoIosSnowy } from "react-icons/lib/io";
-import { HTMLContent } from "./Content";
 import Img from "gatsby-image";
 
 const FeatureIcon = ({ icon, className }) => {

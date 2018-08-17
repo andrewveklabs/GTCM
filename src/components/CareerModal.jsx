@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Flex, { FlexItem } from "styled-flex-component";
 import styleguide from "./styleguide";
 import logo from "../img/Single.svg";
 

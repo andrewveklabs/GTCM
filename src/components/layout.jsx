@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import Transition from "./Transition";
 
 import "normalize.css";
 import logo from "../img/ICON_PNG.png";
@@ -9,7 +8,7 @@ import "../styles/main.scss";
 
 class Layout extends Component {
 	render() {
-		const { children, index, location } = this.props;
+		const { children, index } = this.props;
 
 		return (
 			<div>

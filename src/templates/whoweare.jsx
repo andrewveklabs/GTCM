@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { HTMLContent } from "../components/Content";
 import Page from "../components/Page";
-import PageNavigator from "../components/PageNavigator";
 import Button from "../components/Button";
 import { IoIosArrowThinRight } from "react-icons/lib/io";
 import posed from "react-pose";

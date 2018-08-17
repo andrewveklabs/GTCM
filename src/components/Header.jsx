@@ -1,5 +1,4 @@
-import React, { PureComponent, Component, findDOMNode } from "react";
-import { createPortal } from "react-dom";
+import React, { Component } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import Flex, { FlexItem } from "styled-flex-component";
@@ -39,22 +38,5 @@ class Header extends Component {
 		);
 	}
 }
-
-const Arrow = styled.div`
-	position: absolute;
-	width: 3em;
-	height: 3em;
-	&[data-placement*="bottom"] {
-		top: 0;
-		left: 0;
-		margin-top: -0.9em;
-		width: 3em;
-		height: 1em;
-		&::before {
-			border-width: 0 1.5em 1em 1.5em;
-			border-color: transparent transparent #232323 transparent;
-		}
-	}
-`;
 
 export default Header;

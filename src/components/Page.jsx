@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import Helmet from "react-helmet";
 import Header from "./Header";
 import Indicator from "./Indicator";
 import Layout from "./layout";
-import posed, { PoseGroup } from "react-pose";
+import posed from "react-pose";
 import styleguide from "./styleguide";
 import PageNavigator from "./PageNavigator";
 import { navigateTo } from "gatsby";
@@ -23,9 +22,9 @@ class Page extends Component {
 	};
 
 	handleKey = e => {
-		if (e.key == "ArrowRight" && !e.repeat) {
+		if (e.key === "ArrowRight" && !e.repeat) {
 			navigateTo(this.props.next.url);
-		} else if (e.key == "ArrowLeft" && !e.repeat) {
+		} else if (e.key === "ArrowLeft" && !e.repeat) {
 			navigateTo(this.props.prev.url);
 		}
 	};

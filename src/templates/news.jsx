@@ -2,7 +2,6 @@ import React from "react";
 import Page from "../components/Page";
 import LineThrough from "../components/LineThrough";
 import { IoIosArrowRight } from "react-icons/lib/io";
-import PageNavigator from "../components/PageNavigator";
 import _ from "lodash";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";

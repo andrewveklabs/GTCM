@@ -7,7 +7,6 @@ import { graphql } from "gatsby";
 
 const Contact = ({ data, location }) => (
 	<Page
-		light={true}
 		blueLine={true}
 		light
 		prev={{ title: "Leadership", url: "/leadership" }}
@@ -29,7 +28,7 @@ const Contact = ({ data, location }) => (
 				</div>
 			</div>
 			<div className="right-side">
-				<form action="POST" className="contact-form" netlify netlify={true} id="contact-form">
+				<form action="POST" className="contact-form" netlify={true} id="contact-form">
 					<input type="text" className="contact-name" placeholder="Name" />
 					<input type="email" className="contact-email" placeholder="Email" />
 					<textarea

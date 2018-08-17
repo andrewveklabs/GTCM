@@ -3,6 +3,10 @@
 
 html {
 	font-size: $base;
+
+	::selection {
+		background: transparentize($yellow, 0.5);
+	}
 }
 
 .no-lh {

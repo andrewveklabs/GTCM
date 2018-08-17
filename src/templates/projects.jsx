@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-import { HTMLContent } from "../components/Content";
 import Page from "../components/Page";
-import PageNavigator from "../components/PageNavigator";
 import ProjectModal from "../components/ProjectModal";
 import Modal from "react-modal";
 import Img from "gatsby-image";
@@ -28,7 +25,12 @@ const FeatureIcon = ({ icon, className }) => {
 
 const ProjectCard = ({ title, type, image, features, hostRef, transition, ongoing, onClick }) => (
 	<div onClick={onClick} className="project-card" style={{ transition }} ref={hostRef}>
-		{ongoing && <Badge>{console.log(ongoing)}ongoing</Badge>}
+		{ongoing && (
+			<Badge>
+				{console.log(ongoing)}
+				ongoing
+			</Badge>
+		)}
 		<Img className="project-card--image" fluid={image.childImageSharp.fluid} alt={title} />
 		<div className="project-card--bottom">
 			<h4 className="project-card--title">{title}</h4>

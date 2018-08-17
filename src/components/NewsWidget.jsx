@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/NewsWidget.scss";
-import posed, { PoseGroup } from "react-pose";
+import posed from "react-pose";
 import LineThrough from "./LineThrough";
 import Button from "./Button";
 import styleguide from "./styleguide";
@@ -13,14 +13,16 @@ const NewsWidget = ({ title, date, author, slug }) => {
 			</WidgetText>
 
 			<WidgetInfo initialPose="exit" pose="enter" className="latest-post--author">
-				<h6>by</h6>&nbsp;
+				<h6>by</h6>
+				&nbsp;
 				<h5>{author}</h5>
 			</WidgetInfo>
 			<WidgetInfo initialPose="exit" pose="enter" className="latest-post--divider">
 				&nbsp;/&nbsp;
 			</WidgetInfo>
 			<WidgetInfo initialPose="exit" pose="enter" className="latest-post--date">
-				<h6>year</h6>&nbsp;
+				<h6>year</h6>
+				&nbsp;
 				<h5>{date}</h5>
 			</WidgetInfo>
 			<Button simple to={slug} className="latest-post--read-link button-simple">

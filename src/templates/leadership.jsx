@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Page from "../components/Page";
-import PageNavigator from "../components/PageNavigator";
 import "../styles/team.scss";
 import posed from "react-pose";
 import styleguide from "../components/styleguide";
