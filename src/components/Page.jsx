@@ -80,15 +80,14 @@ class Page extends Component {
 const Swipe = posed.div({
 	enter: {
 		opacity: 1,
-		delay: 250,
-		delayChildren: 500,
+		delay: 50,
+		delayChildren: 200,
 		transition: {
 			default: { ease: styleguide.bezierArray, duration: 200 }
 		}
 	},
 	exit: {
-		opacity: 0,
-		delay: 500
+		opacity: 0
 	}
 });
 
