@@ -81,7 +81,7 @@ const Swipe = posed.div({
 	enter: {
 		opacity: 1,
 		delay: 50,
-		delayChildren: 200,
+		delayChildren: 300,
 		transition: {
 			default: { ease: styleguide.bezierArray, duration: 200 }
 		}

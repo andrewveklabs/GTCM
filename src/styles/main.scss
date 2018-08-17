@@ -139,6 +139,7 @@ h6 {
 
 	.page-navigator--left {
 		margin-right: auto;
+		cursor: pointer;
 		&:hover {
 			.page-navigator--icon {
 				transform: translateX(-2px);
@@ -151,6 +152,7 @@ h6 {
 
 	.page-navigator--right {
 		margin-left: auto;
+		cursor: pointer;
 		&:hover {
 			.page-navigator--icon {
 				transform: translateX(2px);
