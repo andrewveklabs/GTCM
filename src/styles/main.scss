@@ -3,6 +3,7 @@
 
 html {
 	font-size: $base;
+	overflow-y: hidden;
 
 	::selection {
 		background: transparentize($yellow, 0.5);
@@ -200,9 +201,15 @@ h6 {
 	z-index: 999;
 	align-items: center;
 	justify-content: center;
+	overflow-y: scroll;
 
-	&.Project-Overlay {
+	&.Project-Overlay,
+	&.Post-Overlay {
 		align-items: flex-start;
+	}
+
+	&.Post-Overlay {
+		padding-top: $col;
 	}
 }
 
