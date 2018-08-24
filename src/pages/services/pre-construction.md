@@ -6,8 +6,6 @@ icon: calculator
 order: 1
 ---
 
-### Pre-Construction
-
 **Golden Triangle** provides full scope and partial pre-construction services, depending on our client’s needs. These services include early budget development to determine project feasibility value engineering, constructability analysis, building systems interface, sequencing and scheduling. Our pre-construction expertise also include:
 
 - Consultation during finalizing of specifications

@@ -13,6 +13,7 @@ import {
 	IoIosBriefcaseOutline,
 	IoIosBody
 } from "react-icons/lib/io";
+import Flex from "styled-flex-component";
 
 const Icons = {
 	calculator: <IoIosCalculatorOutline size={60} />,
@@ -59,7 +60,9 @@ class Services extends Component {
 								onClick={() =>
 									this.setState({
 										modalInnerText: service.node.html,
-										isOpen: true
+										isOpen: true,
+										icon: service.node.frontmatter.icon,
+										modalTitle: service.node.frontmatter.title
 									})
 								}
 								animateOnMount
@@ -84,7 +87,13 @@ class Services extends Component {
 					shouldCloseOnOverlayClick={true}
 					shouldCloseOnEsc={true}
 					isOpen={this.state.isOpen}>
-					<ServiceModal dangerouslySetInnerHTML={{ __html: this.state.modalInnerText }} />
+					<ServiceModal>
+						<Flex alignCenter justifyStart>
+							<Icon icon={this.state.icon} />
+							<h3 style={{ marginLeft: 15 }}>{this.state.modalTitle}</h3>
+						</Flex>
+						<p dangerouslySetInnerHTML={{ __html: this.state.modalInnerText }} />
+					</ServiceModal>
 				</Modal>
 			</Page>
 		);
@@ -113,7 +122,7 @@ const ServiceCard = styled(
 		enter: {
 			y: 0,
 			opacity: 1,
-			delay: ({ i }) => i * 150 + 300,
+			delay: ({ i }) => i * 500,
 			transition: {
 				default: { ease: styleguide.bezierArray, duration: 1000 }
 			}

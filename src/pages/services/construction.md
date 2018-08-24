@@ -6,8 +6,6 @@ icon: home
 order: 2
 ---
 
-### Construction
-
 In the construction phase, **Golden Triangle** continues to lead the owner and design team through a strategic process, from pre-construction to working drawings, pre-tender estimates, evaluation of subtrade bids, final budgets, and mobilizing subtrades. Our services during the construction phase also include:
 
 - Value engineering as the project progresses
