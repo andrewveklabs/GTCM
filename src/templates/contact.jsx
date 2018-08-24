@@ -9,7 +9,7 @@ const Contact = ({ data, location }) => (
 	<Page
 		blueLine={true}
 		light
-		prev={{ title: "Leadership", url: "/leadership" }}
+		prev={{ title: "Services", url: "/services" }}
 		next={{ title: "News", url: "/news" }}
 		title="Contact"
 		index={data.markdownRemark.frontmatter.index}

@@ -33,7 +33,7 @@ class Team extends Component {
 			<Page
 				location={location}
 				prev={{ title: "Projects", url: "/projects" }}
-				next={{ title: "Contact", url: "/contact" }}
+				next={{ title: "Services", url: "/services" }}
 				index={team.frontmatter.index}
 				totalCount={data.totalPages.totalCount}
 				title="Leadership"

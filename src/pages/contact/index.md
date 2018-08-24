@@ -1,8 +1,8 @@
 ---
-templateKey: 'contact'
+templateKey: "contact"
 path: /contact
 title: Contact
 level: top
-index: 5
+index: 6
 tagline: "You have big plans.</br>We want to hear them."
 ---
