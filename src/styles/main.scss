@@ -163,7 +163,7 @@ h6 {
 
 	@include breakpoint(1200px) {
 		overflow: auto;
-		height: calc(100vh + $col);
+		height: 100vh;
 		background-repeat: no-repeat;
 	}
 }
