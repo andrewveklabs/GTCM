@@ -1,9 +1,27 @@
 @import "variables";
 @import "mixins";
+@import "~breakpoint-sass/stylesheets/breakpoint";
+
+$Breakpoint-Settings: (
+	"default media": all,
+	"default feature": max-width,
+	"default pair": width,
+	"force all media type": false,
+	"to ems": false,
+	"transform resolutions": true,
+	"no queries": false,
+	"no query fallbacks": false,
+	"base font size": 16px,
+	"legacy syntax": false
+);
 
 html {
 	font-size: $base;
 	overflow-y: hidden;
+
+	@include breakpoint(1200px) {
+		overflow-y: auto;
+	}
 
 	::selection {
 		background: transparentize($yellow, 0.5);
@@ -31,6 +49,10 @@ body {
 	line-height: 1.6667;
 	background: $blue;
 	transition-timing-function: $bezier;
+
+	@include breakpoint(1200px) {
+		font-size: 85%;
+	}
 }
 
 a {
@@ -48,39 +70,73 @@ h1 {
 	line-height: 1.445;
 	font-weight: 500;
 	font-family: "Raleway";
+
+	@include breakpoint(1200px) {
+		@include rem(font-size, 36px);
+	}
 }
 
 h2 {
 	@include rem(font-size, 42px);
 	font-family: "Raleway";
+
+	@include breakpoint(1200px) {
+		@include rem(font-size, 32px);
+	}
 }
 
 h3 {
 	@include rem(font-size, 38px);
 	font-family: "Raleway";
+
+	@include breakpoint(1200px) {
+		@include rem(font-size, 29px);
+	}
 }
 
 h4 {
 	@include rem(font-size, 32px);
 	font-family: "Raleway";
+
+	@include breakpoint(1200px) {
+		@include rem(font-size, 26px);
+	}
 }
 
 h5 {
 	@include rem(font-size, 20px);
 	font-weight: 500;
 	font-family: "Raleway";
+
+	@include breakpoint(1200px) {
+		@include rem(font-size, 18px);
+	}
 }
 
 h6 {
 	@include rem(font-size, 16px);
 	font-weight: 700;
 	font-family: "Raleway";
+
+	@include breakpoint(1200px) {
+		@include rem(font-size, 16px);
+	}
 }
 
 .Page-Component {
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
+
+	@include breakpoint(1200px) {
+		overflow: auto;
+	}
+
+	@include breakpoint(min-width 1201px) {
+		&#front-page .menu-flex {
+			justify-content: flex-end;
+		}
+	}
 
 	&.section--gradient-gray {
 		background: $grayGradient;
@@ -104,6 +160,12 @@ h6 {
 	height: 100vh;
 	overflow: hidden;
 	position: relative;
+
+	@include breakpoint(1200px) {
+		overflow: auto;
+		height: calc(100vh + $col);
+		background-repeat: no-repeat;
+	}
 }
 
 .navbar {
@@ -112,6 +174,32 @@ h6 {
 	text-align: right;
 	h5 > *:not(:last-child) {
 		margin-right: $col / 2;
+	}
+
+	@include breakpoint(1200px) {
+		margin-top: 0;
+		.contact {
+			display: none;
+		}
+
+		.menu-flex {
+			flex-direction: column;
+		}
+	}
+
+	@include breakpoint(800px) {
+		.home-logo {
+			display: none;
+		}
+
+		h2 {
+			margin: 0;
+			margin-top: $col;
+		}
+
+		h5 {
+			margin: $col / 2 0 $col;
+		}
 	}
 
 	h5,
@@ -133,6 +221,11 @@ h6 {
 	position: absolute;
 	z-index: 0;
 	transform: translateY(-50%);
+
+	@include breakpoint(1200px) {
+		padding: 0 $col / 8;
+		z-index: 99999;
+	}
 
 	a {
 		color: black;
@@ -181,11 +274,23 @@ h6 {
 		@include rem(font-size, 24px);
 		font-weight: 500;
 		transition: 150ms;
+
+		@include breakpoint(1200px) {
+			@include rem(font-size, 18px);
+		}
+
+		@include breakpoint(600px) {
+			display: none;
+		}
 	}
 	.page-navigator--icon {
 		@include rem(font-size, 72px);
 		line-height: 0;
 		transition: 150ms;
+
+		@include breakpoint(1200px) {
+			@include rem(font-size, 48px);
+		}
 	}
 }
 

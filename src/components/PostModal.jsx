@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import Flex, { FlexItem } from "styled-flex-component";
+import Flex from "styled-flex-component";
 import styleguide from "./styleguide";
 import Img from "gatsby-image";
-import { IoIosClose } from "react-icons/lib/io";
+import {
+	IoIosClose,
+	IoIosUploadOutline,
+	IoSocialFacebook,
+	IoSocialTwitter,
+	IoSocialGoogleplus
+} from "react-icons/lib/io";
 
-const PostModal = ({ title, content, image, tags, date, description, html, closeModal }) => {
+const PostModal = ({ title, image, tags, date, html, author, closeModal }) => {
 	return (
 		<ModalContainer>
 			<ImageContainer>
@@ -19,13 +25,47 @@ const PostModal = ({ title, content, image, tags, date, description, html, close
 					{tags.map(tag => (
 						<ProjectType>{tag}</ProjectType>
 					))}
+					{author && <strong>by {author}</strong>}
 				</PostDetails>
 				<ProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
 			</ModalInner>
-			<ModalSidebar>Sidebar</ModalSidebar>
+			<ModalSidebar>
+				<Flex column>
+					<SocialButton color="black">
+						<IoIosUploadOutline color="white" size={20} />
+					</SocialButton>
+					<SocialButton color="#5375D6">
+						<IoSocialFacebook color="white" size={20} />
+					</SocialButton>
+					<SocialButton color="#41C9F5">
+						<IoSocialTwitter color="white" size={20} />
+					</SocialButton>
+					<SocialButton color="#FC4E4E">
+						<IoSocialGoogleplus color="white" size={20} />
+					</SocialButton>
+				</Flex>
+			</ModalSidebar>
 		</ModalContainer>
 	);
 };
+
+const SocialButton = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+	width: ${styleguide.c(0.5)};
+	height: ${styleguide.c(0.5)};
+	border-radius: 100px;
+	background-color: ${props => props.color};
+	margin: 0.5rem 0;
+	cursor: pointer;
+	transition: 125ms cubic-bezier(${styleguide.bezier});
+
+	&:hover {
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.36);
+	}
+`;
 
 const ModalContainer = styled.div`
 	max-width: 1200px;
@@ -42,6 +82,14 @@ const ModalContainer = styled.div`
 
 const ModalSidebar = styled.div`
 	grid-area: sidebar;
+	padding-right: ${styleguide.c(1)};
+	margin-top: ${styleguide.c(3)};
+	position: sticky;
+
+	${Flex} {
+		position: sticky;
+		top: 0;
+	}
 `;
 
 const PostDetails = styled.div`
@@ -97,16 +145,6 @@ const ModalTitle = styled.h2`
 	margin: 0;
 	line-height: 1.5;
 	max-width: 640px;
-`;
-
-const Feature = Flex.extend`
-	margin: 0 1rem;
-`;
-
-const FeatureText = styled.span`
-	font-size: 1rem;
-	font-weight: 500;
-	text-transform: capitalize;
 `;
 
 const ImageContainer = styled.div`

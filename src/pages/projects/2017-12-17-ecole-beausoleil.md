@@ -6,8 +6,14 @@ description: This is a test project description
 image: /img/daan-stevens-564483-unsplash.jpg
 type: Educational
 features:
-  - {title: Feature, icon: check}
-  - {title: light, icon: light}
+  - { title: Feature, icon: check }
+  - { title: light, icon: light }
+images:
+  - "/img/Pincher1.jpg"
+  - "/img/Pincher2.jpg"
+  - "/img/Pincher3.jpg"
+  - "/img/Pincher4.jpg"
+  - "/img/Pincher5.jpg"
 ---
 
 ![flavor wheel](/img/flavor_wheel.jpg)

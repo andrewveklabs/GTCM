@@ -7,8 +7,14 @@ description: Convenient access to Chestermere, downtown Calgary, the Rocky Mount
 image: /img/chuttersnap-362512-unsplash.jpg
 type: Beautiful Homes
 features:
-  - {title: snow, icon: snow}
-  - {title: light, icon: light}
+  - { title: snow, icon: snow }
+  - { title: light, icon: light }
+images:
+  - "/img/Pincher1.jpg"
+  - "/img/Pincher2.jpg"
+  - "/img/Pincher3.jpg"
+  - "/img/Pincher4.jpg"
+  - "/img/Pincher5.jpg"
 ---
 
 ## Easy Access

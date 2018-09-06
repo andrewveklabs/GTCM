@@ -8,6 +8,12 @@ type: Senior's Lodge
 features:
   - {title: light, icon: light}
   - {title: light, icon: light}
+images:
+  - "/img/Pincher1.jpg"
+  - "/img/Pincher2.jpg"
+  - "/img/Pincher3.jpg"
+  - "/img/Pincher4.jpg"
+  - "/img/Pincher5.jpg"
 ---
 
 ![flavor wheel](/img/flavor_wheel.jpg)

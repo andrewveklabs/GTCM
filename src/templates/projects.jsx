@@ -25,12 +25,7 @@ const FeatureIcon = ({ icon, className }) => {
 
 const ProjectCard = ({ title, type, image, features, hostRef, transition, ongoing, onClick }) => (
 	<div onClick={onClick} className="project-card" style={{ transition }} ref={hostRef}>
-		{ongoing && (
-			<Badge>
-				{console.log(ongoing)}
-				ongoing
-			</Badge>
-		)}
+		{ongoing && <Badge>ongoing</Badge>}
 		<Img className="project-card--image" fluid={image.childImageSharp.fluid} alt={title} />
 		<div className="project-card--bottom">
 			<h4 className="project-card--title">{title}</h4>
@@ -55,8 +50,8 @@ class Projects extends Component {
 		project: {}
 	};
 
-	openModal = project => {
-		this.setState({ project, modalIsOpen: true });
+	openModal = (project, html) => {
+		this.setState({ project, projectHTML: html, modalIsOpen: true });
 	};
 
 	render() {
@@ -84,7 +79,7 @@ class Projects extends Component {
 									ongoing={project.node.frontmatter.ongoing}
 									transition={this.state.transition}
 									index={index}
-									onClick={() => this.openModal(project.node.frontmatter)}
+									onClick={() => this.openModal(project.node.frontmatter, project.node.html)}
 									key={project.node.id}
 									features={project.node.frontmatter.features}
 									image={project.node.frontmatter.image}
@@ -112,7 +107,7 @@ class Projects extends Component {
 					className="Project-Modal"
 					isOpen={this.state.modalIsOpen}
 					onRequestClose={() => this.setState({ modalIsOpen: false })}>
-					<ProjectModal {...this.state.project} />
+					<ProjectModal html={this.state.projectHTML} {...this.state.project} />
 				</Modal>
 			</Page>
 		);
@@ -187,6 +182,20 @@ export const ProjectPageQuery = graphql`
 						title
 						ongoing
 						image {
+							childImageSharp {
+								fluid(maxWidth: 1200, quality: 100) {
+									...GatsbyImageSharpFluid_withWebp
+								}
+							}
+						}
+						thumbs: images {
+							childImageSharp {
+								fixed(width: 200, height: 200, quality: 100) {
+									...GatsbyImageSharpFixed_withWebp
+								}
+							}
+						}
+						images {
 							childImageSharp {
 								fluid(maxWidth: 1200, quality: 100) {
 									...GatsbyImageSharpFluid_withWebp

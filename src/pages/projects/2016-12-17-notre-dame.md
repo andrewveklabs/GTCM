@@ -6,8 +6,14 @@ description: Addition & Renovation
 image: /img/richard-bagan-690185-unsplash.jpg
 type: Addition & Renovation
 features:
-  - {title: light, icon: light}
-  - {title: Feature, icon: check}
+  - { title: light, icon: light }
+  - { title: Feature, icon: check }
+images:
+  - "/img/Pincher1.jpg"
+  - "/img/Pincher2.jpg"
+  - "/img/Pincher3.jpg"
+  - "/img/Pincher4.jpg"
+  - "/img/Pincher5.jpg"
 ---
 
 ![flavor wheel](/img/flavor_wheel.jpg)

@@ -8,9 +8,7 @@ import styleguide from "./styleguide";
 const NewsWidget = ({ title, date, author, slug }) => {
 	return (
 		<WidgetContainer initialPose="exit" pose="enter" className="latest-post">
-			<WidgetText className="latest-post--title">
-				<LineThrough>{title}</LineThrough>
-			</WidgetText>
+			<WidgetText className="latest-post--title">{title}</WidgetText>
 
 			<WidgetInfo initialPose="exit" pose="enter" className="latest-post--author">
 				<h6>by</h6>

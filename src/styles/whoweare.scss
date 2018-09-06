@@ -1,13 +1,37 @@
 @import "variables";
 @import "mixins";
+@import "~breakpoint-sass/stylesheets/breakpoint";
+
+$Breakpoint-Settings: (
+	"default media": all,
+	"default feature": max-width,
+	"default pair": width,
+	"force all media type": false,
+	"to ems": false,
+	"transform resolutions": true,
+	"no queries": false,
+	"no query fallbacks": false,
+	"base font size": 16px,
+	"legacy syntax": false
+);
 
 .double-flex {
 	margin: 0 $col * 4;
 	display: flex;
 	align-items: center;
 
+	@include breakpoint(1024px) {
+		flex-direction: column;
+		margin-bottom: 100px;
+	}
+
 	.left-side {
 		margin-right: $col * 2.5;
+
+		@include breakpoint(1024px) {
+			margin-right: 0;
+			margin-bottom: $col * 2;
+		}
 
 		.since-date {
 			font-weight: 300;
@@ -29,6 +53,12 @@
 		.whoweare-image {
 			width: $col * 6;
 			border-radius: $borderRadius;
+
+			@include breakpoint(1024px) {
+				width: $col * 16;
+				max-width: 480px;
+				margin: 0 auto;
+			}
 		}
 
 		.whoweare-image--caption {
@@ -45,6 +75,12 @@
 			position: relative;
 			z-index: 11;
 			border-radius: $borderRadius;
+
+			@include breakpoint(1024px) {
+				padding: $col;
+				width: 80%;
+				height: auto;
+			}
 
 			.whoweare-image--caption--title {
 				color: $blue;

@@ -18,7 +18,7 @@ const FeatureIcon = ({ icon, className }) => {
 	}
 };
 
-const ProjectModal = ({ title, content, image, images, year, features, type, date, description, html }) => {
+const ProjectModal = ({ title, content, image, images, thumbs, year, features, type, date, description, html }) => {
 	return (
 		<ModalContainer>
 			<ModalImage fluid={image.childImageSharp.fluid} alt={`${title} image`} />
@@ -43,6 +43,8 @@ const ProjectModal = ({ title, content, image, images, year, features, type, dat
 					<ProjectYear>{year}</ProjectYear>
 				</Flex>
 				<ProjectDescription>{description}</ProjectDescription>
+				<ProjectImages>{thumbs && thumbs.map(image => <Img fixed={image.childImageSharp.fixed} />)}</ProjectImages>
+				<ProjectText dangerouslySetInnerHTML={{ __html: html }} />
 			</ModalInner>
 		</ModalContainer>
 	);
@@ -56,13 +58,22 @@ const ModalFeatureIcon = styled(FeatureIcon)`
 const ModalContainer = styled.div`
 	max-width: 1200px;
 	width: ${styleguide.c(14)};
-	margin-top: ${styleguide.c(1)};
+	margin: ${styleguide.c(1)} 0;
 	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.24);
 	background: white;
 `;
 
 const ProjectDescription = styled.p`
 	color: black;
+`;
+
+const ProjectText = styled.p``;
+
+const ProjectImages = styled.div`
+	display: grid;
+	grid-auto-flow: column;
+	grid-gap: 10px;
+	margin-top: ${styleguide.c(1)};
 `;
 
 const ProjectYear = styled.span`
