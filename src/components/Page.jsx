@@ -9,25 +9,25 @@ import PageNavigator from "./PageNavigator";
 import { navigateTo } from "gatsby";
 
 class Page extends Component {
-	handleScroll = e => {
-		if (e.deltaY < -500) {
-			setTimeout(() => {
-				navigateTo(this.props.next.url);
-			}, 100);
-		} else if (e.deltaY > 500) {
-			setTimeout(() => {
-				navigateTo(this.props.prev.url);
-			}, 100);
-		}
-	};
+	// handleScroll = e => {
+	// 	if (e.deltaY < -500) {
+	// 		setTimeout(() => {
+	// 			navigateTo(this.props.next.url);
+	// 		}, 100);
+	// 	} else if (e.deltaY > 500) {
+	// 		setTimeout(() => {
+	// 			navigateTo(this.props.prev.url);
+	// 		}, 100);
+	// 	}
+	// };
 
-	handleKey = e => {
-		if (e.key === "ArrowRight" && !e.repeat) {
-			navigateTo(this.props.next.url);
-		} else if (e.key === "ArrowLeft" && !e.repeat) {
-			navigateTo(this.props.prev.url);
-		}
-	};
+	// handleKey = e => {
+	// 	if (e.key === "ArrowRight" && !e.repeat) {
+	// 		navigateTo(this.props.next.url);
+	// 	} else if (e.key === "ArrowLeft" && !e.repeat) {
+	// 		navigateTo(this.props.prev.url);
+	// 	}
+	// };
 
 	componentDidMount() {
 		setTimeout(() => {

@@ -101,6 +101,13 @@ const MenuContainerInner = styled.div`
 	grid-gap: 1rem ${styleguide.c(1)};
 	position: relative;
 	grid-template-columns: repeat(2, ${styleguide.c(4)});
+
+	@media screen and (max-width: 600px) {
+		grid-gap: 1rem;
+		width: 100vw;
+		margin-left: 1rem;
+		grid-template-columns: repeat(2, 1fr);
+	}
 `;
 
 const MenuText = styled.h6`
@@ -109,6 +116,11 @@ const MenuText = styled.h6`
 	line-height: 1;
 	margin-left: ${styleguide.c(0.15)};
 	color: #6f98a8;
+
+	@media screen and (max-width: 600px) {
+		font-weight: 500;
+		font-size: inherit;
+	}
 `;
 
 const MenuButton = Flex.extend`

@@ -8,6 +8,11 @@
 		align-items: center;
 		height: 75%;
 
+		@include breakpoint(1024px) {
+			flex-direction: column;
+			height: auto;
+		}
+
 		.left-side {
 			display: flex;
 			justify-content: center;
@@ -15,6 +20,11 @@
 			flex-direction: column;
 			width: 50%;
 			margin-top: -$col / 2;
+
+			@include breakpoint(1024px) {
+				width: 100%;
+				align-items: center;
+			}
 
 			.contact--tagline {
 				margin: 0;
@@ -24,11 +34,24 @@
 				box-shadow: 0 5px 10px black;
 				padding: $col / 3 $col / 2;
 				width: $col * 6;
+
+				@include breakpoint(1024px) {
+					width: auto;
+					font-size: 1.35rem;
+					margin-top: 50px;
+				}
+
+				@include breakpoint(600px) {
+					font-size: 1rem;
+				}
 			}
 
 			.contact--social-icons {
 				align-self: flex-end;
 				margin-top: 2rem;
+				@include breakpoint(1024px) {
+					align-self: center;
+				}
 
 				.social-icon {
 					background: white;
@@ -37,6 +60,11 @@
 					color: white;
 					padding: 1rem;
 					overflow: visible;
+
+					@include breakpoint(1200px) {
+						padding: 0.65rem;
+						font-size: 1.05rem;
+					}
 
 					&:not(:first-child) {
 						margin-left: 1.5rem;
@@ -66,6 +94,10 @@
 					width: $col * 6;
 					border-radius: $borderRadius;
 
+					@include breakpoint(1024px) {
+						width: 100%;
+					}
+
 					&:not(:first-child) {
 						margin-top: $col / 4;
 					}
@@ -74,6 +106,10 @@
 				textarea {
 					height: $col * 2;
 					border-radius: $borderRadius;
+
+					@include breakpoint(1024px) {
+						height: 50px;
+					}
 				}
 
 				.contact-submit {
@@ -85,6 +121,12 @@
 					padding: 1rem 2rem;
 					margin-top: $col / 4;
 					@include rem(font-size, 20px);
+
+					@include breakpoint(1024px) {
+						@include rem(font-size, 16px);
+						padding: 0.5rem 1rem;
+						display: block;
+					}
 				}
 			}
 		}

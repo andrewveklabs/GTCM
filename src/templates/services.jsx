@@ -115,6 +115,11 @@ const ServiceGrid = styled.div`
 	margin: 0 auto;
 	grid-gap: calc(100vw / 24 * 0.66);
 	grid-template-columns: repeat(auto-fill, minmax(calc(100vw / 24 * 3), 480px));
+
+	@media screen and (max-width: 600px) {
+		grid-template-columns: 1fr;
+		width: calc(100vw / 24 * 18);
+	}
 `;
 
 const ServiceCard = styled(
@@ -143,6 +148,11 @@ const ServiceCard = styled(
 	&:hover {
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 	}
+
+	@media screen and (max-width: 600px) {
+		height: auto;
+		padding: 1rem;
+	}
 `;
 
 const ServiceIcon = styled.div`
@@ -151,6 +161,12 @@ const ServiceIcon = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin: 0 calc(100vw / 24 * 0.5);
+
+	@media screen and (max-width: 600px) {
+		width: 35px;
+		align-items: flex-start;
+		margin: 0 0.5rem;
+	}
 `;
 
 const ServiceText = styled.div`

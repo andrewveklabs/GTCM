@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Page from "../components/Page";
-import LineThrough from "../components/LineThrough";
 import { IoIosArrowRight } from "react-icons/lib/io";
 import _ from "lodash";
 import Modal from "react-modal";
@@ -50,9 +49,7 @@ class News extends Component {
 							className="featured-post--image"
 						/>
 						<div className="featured-post--info">
-							<h4 className="featured-post--title">
-								<LineThrough>{posts[0].node.frontmatter.title}</LineThrough>
-							</h4>
+							<h4 className="featured-post--title">{posts[0].node.frontmatter.title}</h4>
 							<span className="featured-post--author">
 								by <strong>{posts[0].node.frontmatter.author}</strong>
 							</span>

@@ -3,12 +3,19 @@
 
 .team-members {
 	display: grid;
-	grid-template-columns: repeat(2, $col * 4);
+	grid-template-columns: repeat(2, 1fr);
 	grid-column-gap: $col * 2;
 	justify-content: center;
 	align-items: center;
 	height: 80%;
+	width: 100vw - $col * 8;
+	margin: 0 auto;
 	margin-top: -$col;
+
+	@include breakpoint(1200px) {
+		grid-template-columns: 1fr;
+		padding-bottom: 100px;
+	}
 
 	.team-member {
 		cursor: pointer;
@@ -16,20 +23,35 @@
 		&:hover .team-member--info {
 			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
 			transform: translateX($col / 2) translateY(-78%);
+			@include breakpoint(1200px) {
+				box-shadow: none;
+			}
 		}
 
 		.team-member--image {
 			height: $col * 5;
 			width: $col * 3;
 			border-radius: $borderRadius;
+
+			@include breakpoint(1200px) {
+				width: 50%;
+				max-width: 300px;
+				margin: 50px auto;
+				height: auto;
+			}
 		}
 
 		.team-member--info {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 			background-color: white;
-			padding: $col / 4;
+			padding: 2rem;
 			margin-top: -$col;
 			margin-left: $col * 0.5;
-			height: $col;
+			max-height: $col;
+			height: 100%;
+			width: $col * 4;
 			transform: translateY(-75%);
 			z-index: 999;
 			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
@@ -37,9 +59,27 @@
 			overflow: hidden;
 			white-space: nowrap;
 
+			@include breakpoint(1500px) {
+				width: 80%;
+				margin: 0 auto;
+			}
+
+			@include breakpoint(1200px) {
+				transform: none;
+				align-items: center;
+				background: transparent;
+				box-shadow: none;
+				margin: -$col auto 0;
+				width: auto;
+			}
+
 			.team-member--name {
 				margin: 0;
 				font-size: 1.75rem;
+
+				@include breakpoint(1200px) {
+					font-size: 1.25rem;
+				}
 			}
 
 			.team-member--title {
@@ -54,7 +94,7 @@
 	display: inline-block;
 	font-weight: 700;
 	line-height: 0;
-	padding: $col / 3 $col / 2;
+	padding: 1.35rem 1.5rem;
 	position: absolute;
 	bottom: $col;
 	right: $col * 2;
@@ -64,5 +104,17 @@
 	&:hover {
 		transform: translateY(-1px);
 		box-shadow: 0 3px 8px transparentize(darken($yellow, 15), 0.3);
+	}
+
+	@include breakpoint(1200px) {
+		bottom: 10px;
+		right: 10px;
+		display: inline-block;
+		transform: translateX(-50%);
+		z-index: 999999;
+
+		&:hover {
+			transform: translateY(-1px) translateX(-50%);
+		}
 	}
 }

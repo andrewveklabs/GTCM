@@ -4,6 +4,7 @@ import Flex, { FlexItem } from "styled-flex-component";
 import styleguide from "./styleguide";
 import { IoIosLightbulbOutline, IoIosCheckmarkOutline, IoIosSnowy } from "react-icons/lib/io";
 import Img from "gatsby-image";
+import { Close } from "./PostModal";
 
 const FeatureIcon = ({ icon, className }) => {
 	switch (icon) {
@@ -18,12 +19,26 @@ const FeatureIcon = ({ icon, className }) => {
 	}
 };
 
-const ProjectModal = ({ title, content, image, images, thumbs, year, features, type, date, description, html }) => {
+const ProjectModal = ({
+	title,
+	content,
+	image,
+	images,
+	thumbs,
+	year,
+	features,
+	type,
+	date,
+	description,
+	html,
+	closeModal
+}) => {
 	return (
 		<ModalContainer>
+			<Close onClick={closeModal} color="white" size={28} />
 			<ModalImage fluid={image.childImageSharp.fluid} alt={`${title} image`} />
 			<ModalInner>
-				<Flex justifyBetween alignCenter>
+				<HeaderFlex justifyBetween alignCenter>
 					<FlexItem>
 						<ModalTitle>{title}</ModalTitle>
 					</FlexItem>
@@ -37,7 +52,7 @@ const ProjectModal = ({ title, content, image, images, thumbs, year, features, t
 							))}
 						</Flex>
 					</FlexItem>
-				</Flex>
+				</HeaderFlex>
 				<Flex alignCenter>
 					<ProjectType>{type}</ProjectType>
 					<ProjectYear>{year}</ProjectYear>
@@ -50,9 +65,20 @@ const ProjectModal = ({ title, content, image, images, thumbs, year, features, t
 	);
 };
 
+const HeaderFlex = Flex.extend`
+	@media screen and (max-width: 600px) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+`;
+
 const ModalFeatureIcon = styled(FeatureIcon)`
 	font-size: 2rem;
 	margin-right: 0.25rem;
+
+	@media screen and (max-width: 600px) {
+		font-size: 1rem;
+	}
 `;
 
 const ModalContainer = styled.div`
@@ -61,6 +87,17 @@ const ModalContainer = styled.div`
 	margin: ${styleguide.c(1)} 0;
 	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.24);
 	background: white;
+
+	@media screen and (max-width: 1200px) {
+		width: 80%;
+		margin: ${styleguide.c(1)} auto;
+		overflow: hidden;
+		z-index: 99999999;
+		position: relative;
+	}
+	@media screen and (max-width: 1200px) {
+		width: 100%;
+	}
 `;
 
 const ProjectDescription = styled.p`
@@ -74,6 +111,9 @@ const ProjectImages = styled.div`
 	grid-auto-flow: column;
 	grid-gap: 10px;
 	margin-top: ${styleguide.c(1)};
+
+	@media screen and (max-width: 600px) {
+	}
 `;
 
 const ProjectYear = styled.span`
@@ -94,11 +134,16 @@ const ModalInner = styled.div`
 `;
 
 const ModalTitle = styled.h2`
-	line-height: 0;
+	margin: 0;
 `;
 
 const Feature = Flex.extend`
 	margin: 0 1rem;
+
+	@media screen and (max-width: 600px) {
+		flex-direction: column;
+		margin-bottom: 1rem;
+	}
 `;
 
 const FeatureText = styled.span`

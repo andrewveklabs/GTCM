@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/NewsWidget.scss";
 import posed from "react-pose";
-import LineThrough from "./LineThrough";
+import styled from "styled-components";
 import Button from "./Button";
 import styleguide from "./styleguide";
 
@@ -30,20 +30,26 @@ const NewsWidget = ({ title, date, author, slug }) => {
 	);
 };
 
-const WidgetContainer = posed.div({
-	enter: {
-		opacity: 1,
-		y: 0,
-		delay: 450,
-		transition: {
-			default: { ease: styleguide.bezierArray, duration: 700 }
+const WidgetContainer = styled(
+	posed.div({
+		enter: {
+			opacity: 1,
+			y: 0,
+			delay: 450,
+			transition: {
+				default: { ease: styleguide.bezierArray, duration: 700 }
+			}
+		},
+		exit: {
+			opacity: 0,
+			y: "60%"
 		}
-	},
-	exit: {
-		opacity: 0,
-		y: "60%"
+	})
+)`
+	@media screen and (max-width: 600px) {
+		padding: 10px;
 	}
-});
+`;
 
 const WidgetText = posed.h3({
 	enter: {

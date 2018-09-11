@@ -54,8 +54,8 @@ const SocialButton = styled.div`
 	align-items: center;
 	justify-content: center;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-	width: ${styleguide.c(0.5)};
-	height: ${styleguide.c(0.5)};
+	width: 2rem;
+	height: 2rem;
 	border-radius: 100px;
 	background-color: ${props => props.color};
 	margin: 0.5rem 0;
@@ -78,6 +78,16 @@ const ModalContainer = styled.div`
 	grid-template-areas:
 		"image image image image"
 		"content content content sidebar";
+
+	@media screen and (max-width: 1024px) {
+		max-width: auto;
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	@media screen and (max-width: 600px) {
+		width: 100%;
+	}
 `;
 
 const ModalSidebar = styled.div`
@@ -100,7 +110,7 @@ const PostDetails = styled.div`
 	margin: 1rem 0 2rem;
 `;
 
-const Close = styled(IoIosClose)`
+export const Close = styled(IoIosClose)`
 	position: absolute;
 	z-index: 99;
 	top: 1rem;

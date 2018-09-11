@@ -107,7 +107,11 @@ class Projects extends Component {
 					className="Project-Modal"
 					isOpen={this.state.modalIsOpen}
 					onRequestClose={() => this.setState({ modalIsOpen: false })}>
-					<ProjectModal html={this.state.projectHTML} {...this.state.project} />
+					<ProjectModal
+						closeModal={() => this.setState({ modalIsOpen: false })}
+						html={this.state.projectHTML}
+						{...this.state.project}
+					/>
 				</Modal>
 			</Page>
 		);
@@ -123,7 +127,7 @@ const Badge = styled.div`
 	color: white;
 	position: absolute;
 	z-index: 99;
-	top: calc(${(100 / 24) * 2}vw - 30px);
+	top: 10px;
 	right: 10px;
 `;
 

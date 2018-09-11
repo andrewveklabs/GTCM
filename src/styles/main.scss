@@ -1,21 +1,8 @@
 @import "variables";
 @import "mixins";
-@import "~breakpoint-sass/stylesheets/breakpoint";
-
-$Breakpoint-Settings: (
-	"default media": all,
-	"default feature": max-width,
-	"default pair": width,
-	"force all media type": false,
-	"to ems": false,
-	"transform resolutions": true,
-	"no queries": false,
-	"no query fallbacks": false,
-	"base font size": 16px,
-	"legacy syntax": false
-);
 
 html {
+	-webkit-overflow-scrolling: touch;
 	font-size: $base;
 	overflow-y: hidden;
 
@@ -91,6 +78,10 @@ h3 {
 
 	@include breakpoint(1200px) {
 		@include rem(font-size, 29px);
+	}
+
+	@include breakpoint(600px) {
+		@include rem(font-size, 22px);
 	}
 }
 

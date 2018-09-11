@@ -1,19 +1,5 @@
 @import "variables";
 @import "mixins";
-@import "~breakpoint-sass/stylesheets/breakpoint";
-
-$Breakpoint-Settings: (
-	"default media": all,
-	"default feature": max-width,
-	"default pair": width,
-	"force all media type": false,
-	"to ems": false,
-	"transform resolutions": true,
-	"no queries": false,
-	"no query fallbacks": false,
-	"base font size": 16px,
-	"legacy syntax": false
-);
 
 .latest-post {
 	background: white;
