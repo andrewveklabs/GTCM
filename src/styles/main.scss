@@ -114,6 +114,12 @@ h6 {
 	}
 }
 
+blockquote {
+	border-left: solid 5px $blue;
+	margin-left: $col / 2;
+	padding-left: $col / 2;
+}
+
 .Page-Component {
 	width: 100vw;
 	height: 100vh;
@@ -317,11 +323,12 @@ h6 {
 	max-width: 500px;
 }
 
-.Project-Modal {
-	height: 100vh;
-	overflow-y: scroll;
-	outline: none;
-}
+// .Project-Modal,
+// .Post-Modal {
+// 	height: 100vh;
+// 	overflow-y: scroll;
+// 	outline: none;
+// }
 
 .line-through {
 	text-decoration: none;

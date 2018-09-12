@@ -17,13 +17,14 @@ images:
   - "/img/Pincher5.jpg"
 ---
 
-## Easy Access
+#### Easy Access
 
 Convenient access to Chestermere, downtown Calgary, the Rocky Mountains and amenities via the Trans Canada Highway, Stoney Trail and the Deerfoot.
 
-## Nature Paths
+#### Nature Paths
 
 26km of regional pathways for bikers and walkers connecting the community to the lake, green spaces, Calgary’s Bow River Pathway and beyond to the TransCanada Trail.
 
-##Shopping
+#### Shopping
+
 Start your shopping day off right at the café only a short walk away. Groceries and other shopping are conveniently located in Chestermere.

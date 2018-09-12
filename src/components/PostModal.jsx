@@ -15,7 +15,7 @@ const PostModal = ({ title, image, tags, date, html, author, closeModal }) => {
 	return (
 		<ModalContainer>
 			<ImageContainer>
-				<Close onClick={closeModal} color="white" size={28} />
+				<Close onClick={closeModal} color="black" size={28} />
 				<ModalImage fluid={image.childImageSharp.fluid} alt={`${title} image`} />
 			</ImageContainer>
 			<ModalInner>
@@ -117,6 +117,8 @@ export const Close = styled(IoIosClose)`
 	right: 1rem;
 	cursor: pointer;
 	transition: 225ms cubic-bezier(${styleguide.bezier});
+	background: white;
+	border-radius: 100px;
 
 	&:hover {
 		opacity: 0.8;

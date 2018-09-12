@@ -5,6 +5,7 @@ import styleguide from "./styleguide";
 import { IoIosLightbulbOutline, IoIosCheckmarkOutline, IoIosSnowy } from "react-icons/lib/io";
 import Img from "gatsby-image";
 import { Close } from "./PostModal";
+import Lightbox from "react-image-lightbox";
 
 const FeatureIcon = ({ icon, className }) => {
 	switch (icon) {
@@ -35,7 +36,7 @@ const ProjectModal = ({
 }) => {
 	return (
 		<ModalContainer>
-			<Close onClick={closeModal} color="white" size={28} />
+			<Close onClick={closeModal} color="black" size={28} />
 			<ModalImage fluid={image.childImageSharp.fluid} alt={`${title} image`} />
 			<ModalInner>
 				<HeaderFlex justifyBetween alignCenter>

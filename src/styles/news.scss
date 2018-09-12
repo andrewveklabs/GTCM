@@ -34,8 +34,11 @@
 	}
 
 	.featured-post--info {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
 		background-color: #fff;
-		padding: $col / 3 $col / 2 $col;
+		padding: $col / 3 $col / 2;
 		width: 100%;
 		box-sizing: border-box;
 		margin-top: -$col;
@@ -46,6 +49,7 @@
 
 		@include breakpoint(1024px) {
 			margin-top: -$col * 2;
+			padding-bottom: $col;
 		}
 
 		&:hover {
@@ -64,6 +68,7 @@
 		.featured-post--author {
 			float: right;
 			margin-top: -0.5rem;
+			align-self: flex-end;
 		}
 	}
 }

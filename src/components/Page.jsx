@@ -6,7 +6,6 @@ import Layout from "./layout";
 import posed from "react-pose";
 import styleguide from "./styleguide";
 import PageNavigator from "./PageNavigator";
-import { navigateTo } from "gatsby";
 
 class Page extends Component {
 	// handleScroll = e => {
